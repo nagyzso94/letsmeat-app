@@ -1,6 +1,6 @@
-package com.letsmeatapp.letsmeatapp.repository
+package com.letsmeatapp.letsmeatapp.data.repository
 
-import com.letsmeatapp.letsmeatapp.network.Resource
+import com.letsmeatapp.letsmeatapp.data.network.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

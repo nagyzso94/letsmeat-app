@@ -1,6 +1,6 @@
-package com.letsmeatapp.letsmeatapp.network
+package com.letsmeatapp.letsmeatapp.data.network
 
-import com.letsmeatapp.letsmeatapp.responses.LoginResponse
+import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

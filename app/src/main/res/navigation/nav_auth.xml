@@ -5,13 +5,13 @@
     android:id="@+id/nav_auth"
     app:startDestination="@id/loginFragment">
 
-    <activity
+    <fragment
         android:id="@+id/loginFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 
-    <activity
+    <fragment
         android:id="@+id/registerFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.auth.RegisterFragment"
         android:label="fragment_register"

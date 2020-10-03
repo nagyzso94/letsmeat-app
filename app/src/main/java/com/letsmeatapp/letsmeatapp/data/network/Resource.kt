@@ -1,4 +1,4 @@
-package com.letsmeatapp.letsmeatapp.network
+package com.letsmeatapp.letsmeatapp.data.network
 
 import okhttp3.ResponseBody
 
