@@ -1,5 +1,5 @@
 package com.letsmeatapp.letsmeatapp.data.responses
 
-class RegisterResponse(
+data class RegisterResponse(
     val registerMessage: RegisterMessage
 )

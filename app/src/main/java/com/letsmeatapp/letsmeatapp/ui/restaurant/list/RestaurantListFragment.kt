@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.letsmeatapp.letsmeatapp.R
+import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
+import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
+import kotlinx.android.synthetic.main.restaurant_list_fragment.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RestaurantListFragment : Fragment() {
 
@@ -19,7 +25,13 @@ class RestaurantListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.restaurant_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
+
+        view.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_restaurantListFragment_to_restaurantAddFragment)
+        }
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

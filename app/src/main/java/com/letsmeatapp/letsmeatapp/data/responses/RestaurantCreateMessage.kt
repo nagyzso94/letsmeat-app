@@ -1,6 +1,6 @@
 package com.letsmeatapp.letsmeatapp.data.responses
 
-data class RegisterMessage(
-    val errors: RegisterErrors,
+data class RestaurantCreateMessage(
+    val errors: RestaurantErrors,
     val message: String
 )

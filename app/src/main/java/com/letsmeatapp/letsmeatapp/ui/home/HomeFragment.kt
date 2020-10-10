@@ -11,6 +11,8 @@ import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.User
 import com.letsmeatapp.letsmeatapp.databinding.FragmentHomeBinding
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
+import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -24,7 +26,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
         viewModel.user.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Success -> {
-                    updateUI(it.value.user)
+                    //updateUI(it.value.user)
+                    requireActivity().startNewActivity(RestaurantActivity::class.java)
                 }
             }
         })
