@@ -27,6 +27,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     compileOptions {
@@ -37,11 +38,13 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
 }
 
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     def nav_version = "2.3.0"
     def vm_version = "2.2.0"
     def cr_version = "1.3.9"
@@ -74,13 +77,17 @@ dependencies {
     // Android Navigation architecture
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.fragment:fragment-ktx:$fm_version"
 
+    // Okhttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
 
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
 
-    implementation "androidx.fragment:fragment-ktx:$fm_version"
+
+    // RecyclerView Animator
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 
 
 }

@@ -9,6 +9,7 @@ import com.letsmeatapp.letsmeatapp.ui.auth.AuthViewModel
 import com.letsmeatapp.letsmeatapp.ui.home.HomeViewModel
 import java.lang.IllegalArgumentException
 
+@Suppress("UNCHECKED_CAST")
 class ViewModelFactory(
     private val repository : BaseRepository
 ) : ViewModelProvider.NewInstanceFactory() {

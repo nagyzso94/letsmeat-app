@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val userPreferences = UserPreferences(this)
 
         userPreferences.authToken.asLiveData().observe(this, Observer {
-            //Toast.makeText(this, it ?:"The token is null", Toast.LENGTH_SHORT).show()
             val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
             startNewActivity(activity)
         })

@@ -6,8 +6,10 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/loginFragment"
+        android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_account"
         android:title="User" />
+
+
 </menu>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.restaurant.add.RestaurantAddFragment"
+    android:background="@color/rum_swizzle_lightest"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <EditText
+        android:id="@+id/restaurant_add_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:padding="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColorHint="@color/dark_tulip"
+        android:background="@drawable/custom_edittext_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/restaurant_add_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/restaurant_address"
+        android:inputType="text"
+        android:padding="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColorHint="@color/dark_tulip"
+        android:background="@drawable/custom_edittext_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_add_title" />
+
+    <EditText
+        android:id="@+id/restaurant_add_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/restaurant_phone"
+        android:inputType="phone"
+        android:padding="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColorHint="@color/dark_tulip"
+        android:background="@drawable/custom_edittext_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_add_address" />
+
+    <EditText
+        android:id="@+id/restaurant_add_web_uri"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/restaurant_uri"
+        android:inputType="textUri"
+        android:padding="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColorHint="@color/dark_tulip"
+        android:background="@drawable/custom_edittext_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_add_phone_number" />
+
+    <Spinner
+        android:id="@+id/type_spinner"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:entries="@array/food_types"
+        android:backgroundTintMode="add"
+        android:textColor="@color/dark_tulip"
+        android:backgroundTint="@color/rum_swizzle_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_add_web_uri" />
+
+    <Button
+        android:id="@+id/add_restaurant_save"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corner_btn"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/type_spinner" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

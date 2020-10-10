@@ -5,4 +5,16 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="dark_gray">#5C5C5C</color>
+    <color name="medium_grey">#A0A0A0</color>
+    <color name="button_grey">#C7C7C7</color>
+    <color name="tulip_tree">#E6A438</color>
+    <color name="rum_swizzle">#FBFBEB</color>
+    <color name="lima">#6FBD16</color>
+    <color name="manhattan">#F5D08B</color>
+    <color name="font_color_dark">#252525</color>
+    <color name="dark_tulip">#BB862E</color>
+    <color name="rum_swizzle_light">#F5F5EF</color>
+    <color name="rum_swizzle_lightest">#FFFFFB</color>
 </resources>

@@ -7,7 +7,7 @@ sealed class Resource<out T> {
     data class Success<out T>(val value : T) : Resource<T>()
 
     data class Failure(
-        val isNetworkError: Boolean?,
+        val isNetworkError: Boolean,
         val errCode : Int?,
         val errorBody : ResponseBody?
     ) : Resource<Nothing>()

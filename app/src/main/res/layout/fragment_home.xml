@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:padding="30dp">
 
     <TableLayout
         android:id="@+id/table"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="12dp"
+        android:padding="10dp"
         android:stretchColumns="*">
 
         <TableRow>
@@ -29,13 +30,9 @@
         <TableRow>
 
             <TextView
-                style="@style/TextDefault"
-                android:text="Name" />
-
-            <TextView
                 android:id="@+id/text_view_name"
                 style="@style/TextDefault"
-                tools:text="Belal Khan" />
+                tools:text="Só Zoltán" />
 
         </TableRow>
 
@@ -48,7 +45,7 @@
             <TextView
                 android:id="@+id/text_view_Email"
                 style="@style/TextDefault"
-                tools:text="probelalkhan@gmail.com" />
+                tools:text="user@gmail.com" />
 
         </TableRow>
 
@@ -56,11 +53,11 @@
 
     <Button
         android:id="@+id/button_logout"
-        android:layout_width="wrap_content"
+        android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/table"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="100dp"
         android:text="Logout" />
 
-</FrameLayout>
+</RelativeLayout>

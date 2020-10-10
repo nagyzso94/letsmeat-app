@@ -15,6 +15,10 @@ class AuthRepository(
     suspend fun saveAuthToken(token: String){
         preferences.saveAuthToken(token)
     }
+
+    suspend fun register(name: String, email: String, password: String, passwordConfirmation: String) = safeApiCall {
+        api.register(name,email,password,passwordConfirmation)
+    }
 }
 
 

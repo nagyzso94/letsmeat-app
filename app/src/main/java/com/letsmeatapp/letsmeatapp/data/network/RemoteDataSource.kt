@@ -25,10 +25,10 @@ class RemoteDataSource {
                             it.addHeader("Authorization","Bearer $authToken")
                         }.build())
                     }.also { client ->
-                    if (BuildConfig.DEBUG){
-                    val logging = HttpLoggingInterceptor()
-                    logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-                    client.addInterceptor(logging)
+                        if (BuildConfig.DEBUG){
+                        val logging = HttpLoggingInterceptor()
+                        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+                        client.addInterceptor(logging)
                     }
                 }.build()
             )

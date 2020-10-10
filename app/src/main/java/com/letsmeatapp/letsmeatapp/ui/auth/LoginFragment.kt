@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.databinding.FragmentLoginBinding
 import com.letsmeatapp.letsmeatapp.data.network.AuthApi
@@ -23,18 +25,16 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        binding.loginProgressbar.visible(false)
         binding.loginBtn.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            //binding.loginProgressbar.visible(false)
             when(it){
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
                         requireActivity().startNewActivity(HomeActivity::class.java)
                     }
-                   // Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Failure -> {
                     Log.d("log",it.toString())
@@ -55,7 +55,9 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             viewModel.login(email,password)
         }
 
-
+        binding.createAccountTxt.setOnClickListener {
+            it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     override fun getViewModel() = AuthViewModel::class.java

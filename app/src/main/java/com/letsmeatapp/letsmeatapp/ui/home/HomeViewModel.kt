@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
+import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val repository: UserRepository
-): ViewModel(){
+): BaseViewModel(repository){
 
     private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val user: LiveData<Resource<LoginResponse>>
