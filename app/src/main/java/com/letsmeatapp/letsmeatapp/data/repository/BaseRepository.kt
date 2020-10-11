@@ -1,6 +1,7 @@
 package com.letsmeatapp.letsmeatapp.data.repository
 
 import com.letsmeatapp.letsmeatapp.data.network.Resource
+import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -30,4 +31,5 @@ abstract class BaseRepository {
     suspend fun logout(api: UserApi) = safeApiCall {
         api.logout()
     }
+
 }

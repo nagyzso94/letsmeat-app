@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
 import com.letsmeatapp.letsmeatapp.data.repository.BaseRepository
+import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.ui.auth.AuthViewModel
 import com.letsmeatapp.letsmeatapp.ui.home.HomeViewModel
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantViewModel
 import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
@@ -18,6 +20,7 @@ class ViewModelFactory(
         return when{
             modelClass.isAssignableFrom(AuthViewModel::class.java) -> AuthViewModel(repository as AuthRepository) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository as UserRepository) as T
+            modelClass.isAssignableFrom(RestaurantViewModel::class.java) -> RestaurantViewModel(repository as RestaurantRepository) as T
             else -> throw IllegalArgumentException("ViewModelClass Not Found")
         }
     }

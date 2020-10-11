@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.letsmeatapp.letsmeatapp.data.UserPreferences
 import com.letsmeatapp.letsmeatapp.ui.auth.AuthActivity
 import com.letsmeatapp.letsmeatapp.ui.home.HomeActivity
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         userPreferences.authToken.asLiveData().observe(this, Observer {
             val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
+            //val activity = if (it == null) AuthActivity::class.java else RestaurantActivity::class.java
             startNewActivity(activity)
         })
 

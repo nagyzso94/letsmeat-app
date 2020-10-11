@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.restaurant.add.RestaurantAddFragment"
+    tools:context=".ui.restaurant.RestaurantAddFragment"
     android:background="@color/rum_swizzle_lightest"
     android:paddingLeft="24dp"
     android:paddingRight="24dp">

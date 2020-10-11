@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/restaurantListFragment"
-        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.list.RestaurantListFragment"
+        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantListFragment"
         android:label="restaurant_list_fragment"
-        tools:layout="@layout/restaurant_list_fragment" >
+        tools:layout="@layout/restaurants_fragment" >
         <action
             android:id="@+id/action_restaurantListFragment_to_restaurantAddFragment"
             app:destination="@id/restaurantAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantAddFragment"
-        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.add.RestaurantAddFragment"
+        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment"
         android:label="restaurant_add_fragment"
         tools:layout="@layout/restaurant_add_fragment" >
         <action

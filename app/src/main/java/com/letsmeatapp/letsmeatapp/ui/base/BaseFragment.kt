@@ -32,7 +32,7 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         savedInstanceState: Bundle?
     ): View? {
         userPreferences = UserPreferences(requireContext())
-        binding = getFragmentBinding(inflater,container)
+        binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModel())
 
@@ -41,18 +41,17 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         return binding.root
     }
 
-    fun logout() = lifecycleScope.launch {
+    fun logout() = lifecycleScope.launch{
         val authToken = userPreferences.authToken.first()
         val api = remoteDataSource.buildApi(UserApi::class.java, authToken)
-
         viewModel.logout(api)
         userPreferences.clear()
         requireActivity().startNewActivity(AuthActivity::class.java)
     }
 
-    abstract fun getViewModel() : Class<VM>
+    abstract fun getViewModel(): Class<VM>
 
-    abstract fun getFragmentBinding(inflater: LayoutInflater,container: ViewGroup?) : B
+    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): B
 
-    abstract fun getFragmentRepository() : R
+    abstract fun getFragmentRepository(): R
 }

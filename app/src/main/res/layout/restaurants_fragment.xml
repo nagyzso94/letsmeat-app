@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.restaurant.list.RestaurantListFragment">
-
-    <data>
-        <variable name="restaurantListViewModel" type="com.letsmeatapp.letsmeatapp.ui.restaurant.list.RestaurantListViewModel"/>
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/restaurant_list_constraintlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/rum_swizzle_lightest">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rum_swizzle_lightest"
+    tools:context=".ui.restaurant.RestaurantListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_list_recyclreview"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
@@ -40,7 +34,4 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
