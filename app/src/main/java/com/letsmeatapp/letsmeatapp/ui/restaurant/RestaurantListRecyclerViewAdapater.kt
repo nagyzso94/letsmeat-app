@@ -29,7 +29,7 @@ class RestaurantListRecyclerViewAdapater : RecyclerView.Adapter<RestaurantListRe
         holder: MyViewHolder,
         position: Int
     ) {
-        holder.itemView.row_restaurant_name.text = restaurantList[position].address
+        holder.itemView.row_restaurant_name.text = restaurantList[position].name
 
         // TODO a képeket a típus alapján betölteni
     }

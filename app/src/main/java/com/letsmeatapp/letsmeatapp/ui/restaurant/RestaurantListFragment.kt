@@ -21,7 +21,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.ResponseBody
 
-class RestaurantListFragment : BaseFragment<RestaurantViewModel, RestaurantsFragmentBinding, RestaurantRepository>() {
+class RestaurantListFragment :
+    BaseFragment<RestaurantViewModel, RestaurantsFragmentBinding, RestaurantRepository>() {
 
     private val restaurantListRecyclerViewAdapter by lazy { RestaurantListRecyclerViewAdapater() }
 
@@ -30,17 +31,12 @@ class RestaurantListFragment : BaseFragment<RestaurantViewModel, RestaurantsFrag
 
         setupRecyclerView()
         viewModel.getRestaurants()
-        var value: Resource<RestaurantResponse>? = viewModel.restaurants.value
-        Log.d("log",value.toString())
-        Log.d("log", viewModel.getRestaurants().toString())
-        // TODO: itt van vmi bibi, mert null jön vissza és a failure ágra fut ez a cucli
-        // + logban látom, hogy lejönnek az éttermek
         viewModel.restaurants.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
                     Log.d("log", it.toString())
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-                    restaurantListRecyclerViewAdapter.setData(it.value.restaurants)
+                    restaurantListRecyclerViewAdapter.setData(it.value.body()!!)
                 }
                 is Resource.Failure -> {
                     Log.d("log", it.toString())
@@ -56,10 +52,11 @@ class RestaurantListFragment : BaseFragment<RestaurantViewModel, RestaurantsFrag
 
     }
 
-    fun setupRecyclerView(){
-        Log.d("recyclerview","meghívódott a setupRecyclerview")
+    fun setupRecyclerView() {
+        Log.d("recyclerview", "meghívódott a setupRecyclerview")
         restaurant_list_recyclreview.adapter = restaurantListRecyclerViewAdapter
-        restaurant_list_recyclreview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        restaurant_list_recyclreview.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     override fun getViewModel(): Class<RestaurantViewModel> = RestaurantViewModel::class.java
@@ -67,11 +64,11 @@ class RestaurantListFragment : BaseFragment<RestaurantViewModel, RestaurantsFrag
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = RestaurantsFragmentBinding.inflate(inflater, container,false)
+    ) = RestaurantsFragmentBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository(): RestaurantRepository {
         val token = runBlocking { userPreferences.authToken.first() }
-        val api = remoteDataSource.buildApi(RestaurantApi::class.java,token)
+        val api = remoteDataSource.buildApi(RestaurantApi::class.java, token)
         return RestaurantRepository(api)
     }
 }

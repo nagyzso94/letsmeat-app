@@ -22,15 +22,15 @@ class RemoteDataSource {
                 OkHttpClient.Builder()
                     .addInterceptor { chain ->
                         chain.proceed(chain.request().newBuilder().also {
-                            it.addHeader("Authorization","Bearer $authToken")
+                            it.addHeader("Authorization", "Bearer $authToken")
                         }.build())
                     }.also { client ->
-                        if (BuildConfig.DEBUG){
-                        val logging = HttpLoggingInterceptor()
-                        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-                        client.addInterceptor(logging)
-                    }
-                }.build()
+                        if (BuildConfig.DEBUG) {
+                            val logging = HttpLoggingInterceptor()
+                            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+                            client.addInterceptor(logging)
+                        }
+                    }.build()
             )
             .addConverterFactory(GsonConverterFactory.create())
             .build()

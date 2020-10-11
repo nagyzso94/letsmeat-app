@@ -9,14 +9,15 @@ import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.data.responses.RestaurantResponse
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class RestaurantViewModel(
     private val repository: RestaurantRepository
 ) : BaseViewModel(repository) {
 
     // Getting restaurants list from the repository
-    private val _restaurants: MutableLiveData<Resource<RestaurantResponse>> = MutableLiveData()
-    val restaurants: LiveData<Resource<RestaurantResponse>>
+    private val _restaurants: MutableLiveData<Resource<Response<List<Restaurant>>>> = MutableLiveData()
+    val restaurants: LiveData<Resource<Response<List<Restaurant>>>>
         get() = _restaurants
 
     fun getRestaurants() = viewModelScope.launch {
