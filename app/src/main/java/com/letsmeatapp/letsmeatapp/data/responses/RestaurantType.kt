@@ -5,6 +5,5 @@ enum class RestaurantType {
     OLASZ,
     ÁZSIAI,
     AMERIKAI,
-    FRANCIA,
-    FÚZIÓS
+    EGYÉB
 }

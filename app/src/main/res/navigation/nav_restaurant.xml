@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_restaurantListFragment_to_restaurantAddFragment"
             app:destination="@id/restaurantAddFragment" />
+        <action
+            android:id="@+id/action_restaurantListFragment_to_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
     </fragment>
     <fragment
         android:id="@+id/restaurantAddFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_restaurantAddFragment_to_restaurantListFragment"
             app:destination="@id/restaurantListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetails"
+        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetails"
+        android:label="fragment_restaurant_details"
+        tools:layout="@layout/fragment_restaurant_details" >
+        <action
+            android:id="@+id/action_restaurantDetails_to_restaurantListFragment"
+            app:destination="@id/restaurantListFragment" />
+        <argument
+            android:name="currentItem"
+            app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
     </fragment>
 </navigation>

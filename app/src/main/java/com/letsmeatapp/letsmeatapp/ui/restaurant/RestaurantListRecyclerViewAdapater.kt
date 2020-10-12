@@ -3,12 +3,14 @@ package com.letsmeatapp.letsmeatapp.ui.restaurant
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.ActivityAuthBinding.inflate
 import com.letsmeatapp.letsmeatapp.ui.base.BindingViewHolder
 import com.letsmeatapp.letsmeatapp.ui.base.viewHolderFrom
+import kotlinx.android.synthetic.main.restaurant_add_fragment.view.*
 import kotlinx.android.synthetic.main.restaurant_item_row.view.*
 
 class RestaurantListRecyclerViewAdapater : RecyclerView.Adapter<RestaurantListRecyclerViewAdapater.MyViewHolder>(){
@@ -30,8 +32,18 @@ class RestaurantListRecyclerViewAdapater : RecyclerView.Adapter<RestaurantListRe
         position: Int
     ) {
         holder.itemView.row_restaurant_name.text = restaurantList[position].name
+        when(restaurantList[position].type){
+            0 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.hungarian_food)
+            1 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.italian_food)
+            2 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.asian_food)
+            3 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.american_food)
+            else -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.other_food)
+        }
 
-        // TODO a képeket a típus alapján betölteni
+        holder.itemView.row_background.setOnClickListener {
+            val action = RestaurantListFragmentDirections.actionRestaurantListFragmentToRestaurantDetails(restaurantList[position])
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

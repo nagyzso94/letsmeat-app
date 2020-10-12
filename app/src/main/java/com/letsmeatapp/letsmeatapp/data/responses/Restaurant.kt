@@ -1,5 +1,9 @@
 package com.letsmeatapp.letsmeatapp.data.responses
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Restaurant(
     val id: Int,
     val name: String,
@@ -9,4 +13,4 @@ data class Restaurant(
     val type: Int,
     val created_at: String,
     val updated_at: String
-)
+) : Parcelable

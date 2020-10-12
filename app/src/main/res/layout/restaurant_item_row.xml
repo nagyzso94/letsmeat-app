@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/row_restaurant_type"
+                android:id="@+id/row_restaurant_type_pic"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="16dp"
@@ -38,7 +38,7 @@
                 android:textColor="@color/light_gray"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/row_restaurant_type"
+                app:layout_constraintEnd_toStartOf="@+id/row_restaurant_type_pic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

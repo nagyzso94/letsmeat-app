@@ -69,7 +69,6 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         }
 
         binding.addRestaurantSave.setOnClickListener {
-
             // checking values
             createRestaurant()
         }
