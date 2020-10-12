@@ -7,10 +7,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
-import com.letsmeatapp.letsmeatapp.databinding.ActivityAuthBinding.inflate
-import com.letsmeatapp.letsmeatapp.ui.base.BindingViewHolder
-import com.letsmeatapp.letsmeatapp.ui.base.viewHolderFrom
-import kotlinx.android.synthetic.main.restaurant_add_fragment.view.*
 import kotlinx.android.synthetic.main.restaurant_item_row.view.*
 
 class RestaurantListRecyclerViewAdapater : RecyclerView.Adapter<RestaurantListRecyclerViewAdapater.MyViewHolder>(){
