@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.restaurant.RestaurantDetails">
+    android:padding="30dp"
+    tools:context=".ui.restaurant.RestaurantDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/restaurant_detail_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:text="Etterem neve"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/restaurant_detail_raddress_tv"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:drawableStart="@drawable/ic_address"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="cím"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_name_tv" />
+
+    <TextView
+        android:id="@+id/restaurant_detail_rphone_tv"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_call"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="telefonszám"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_raddress_tv" />
+
+    <Button
+        android:id="@+id/restaurant_detail_gotoreviews_btn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:padding="10dp"
+        android:text="@string/go_to_reviews_btn"
+        android:background="@drawable/rounded_corner_btn"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_rphone_tv"/>
+
+    <Button
+        android:id="@+id/restaurant_detail_gotowebsite_btn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="@string/go_to_website"
+        android:background="@drawable/rounded_corner_btn_manhattan"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_gotoreviews_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

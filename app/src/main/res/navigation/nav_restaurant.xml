@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/restaurantDetails"
-        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetails"
+        android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragment"
         android:label="fragment_restaurant_details"
         tools:layout="@layout/fragment_restaurant_details" >
         <action

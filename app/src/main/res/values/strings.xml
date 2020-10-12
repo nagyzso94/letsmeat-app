@@ -17,6 +17,8 @@
     <string name="name">Név</string>
     <string name="password_again">Ismételt jelszó</string>
     <string name="register">Regisztráció</string>
+    <string name="go_to_reviews_btn">Irány a vélemények!</string>
+    <string name="go_to_website">Lecsekkolom a weboldalukat</string>
 
     <string-array name="food_types">
         <item>Magyar</item>

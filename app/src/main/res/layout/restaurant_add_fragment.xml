@@ -6,24 +6,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.restaurant.RestaurantAddFragment"
     android:background="@color/rum_swizzle_lightest"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/restaurant_add_screen_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Új étterem felvitele"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/add_restaurant_pic"
+        app:layout_constraintBottom_toTopOf="@+id/restaurant_add_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_add_screen_title" />
+
+
 
     <EditText
         android:id="@+id/restaurant_add_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/custom_edittext_shape"
         android:ems="10"
+        android:fontFamily="@font/roboto_regular"
         android:hint="@string/name"
         android:inputType="text"
         android:padding="16dp"
-        android:fontFamily="@font/roboto_regular"
         android:textColorHint="@color/dark_tulip"
-        android:background="@drawable/custom_edittext_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/imageView" />
 
     <EditText
         android:id="@+id/restaurant_add_address"
@@ -106,8 +130,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/type_spinner" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
