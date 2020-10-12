@@ -1,7 +1,7 @@
 package com.letsmeatapp.letsmeatapp.data.network
 
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
-import com.letsmeatapp.letsmeatapp.data.responses.RestaurantResponse
+import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -21,7 +21,7 @@ interface RestaurantApi {
         @Field("phone_number") phoneNumber: String,
         @Field("web_page") webUri: String,
         @Field("type") type: Int
-    ) : RestaurantResponse
+    ) : RestaurantCreateResponse
     // TODO : Ez nem étterem listát fog kapni, kell majd egy fix, mielőtt csinálom azt a csoda hozzáadás screent!
 
 }

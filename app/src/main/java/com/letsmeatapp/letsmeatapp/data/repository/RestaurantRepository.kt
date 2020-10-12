@@ -1,6 +1,5 @@
 package com.letsmeatapp.letsmeatapp.data.repository
 
-import com.letsmeatapp.letsmeatapp.data.UserPreferences
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 
 class RestaurantRepository(

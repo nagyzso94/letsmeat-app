@@ -1,5 +1,6 @@
 package com.letsmeatapp.letsmeatapp.data.network
 
+import com.letsmeatapp.letsmeatapp.data.responses.GenericResponse
 import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
 import com.letsmeatapp.letsmeatapp.data.responses.RegisterResponse
 import retrofit2.http.Field

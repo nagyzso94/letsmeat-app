@@ -9,6 +9,7 @@ import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.ui.auth.LoginFragment
 import com.letsmeatapp.letsmeatapp.ui.auth.RegisterFragment
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment
 
 fun <A: Activity> Activity.startNewActivity(activity: Class<A>){
     Intent(this, activity).also {
@@ -45,8 +46,10 @@ fun Fragment.handleApiError(
         failure.errCode == 401 ->
             if (this is LoginFragment){
                 requireView().snackbar("Helytelen email és/vagy jelszó!")
-            } else if (this is RegisterFragment){
+            } else if (this is RegisterFragment) {
                 requireView().snackbar("Helytelen név, email és/vagy jelszó!")
+            } else if (this is RestaurantAddFragment){
+                    requireView().snackbar("Helytelen adatok!")
             } else{
                 (this as BaseFragment<*,*,*>).logout()
             }

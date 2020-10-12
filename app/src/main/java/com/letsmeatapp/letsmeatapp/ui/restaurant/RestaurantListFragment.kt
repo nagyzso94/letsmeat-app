@@ -12,14 +12,11 @@ import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
-import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
-import com.letsmeatapp.letsmeatapp.data.responses.RestaurantResponse
 import com.letsmeatapp.letsmeatapp.databinding.RestaurantsFragmentBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.restaurants_fragment.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import okhttp3.ResponseBody
 
 class RestaurantListFragment :
     BaseFragment<RestaurantViewModel, RestaurantsFragmentBinding, RestaurantRepository>() {
@@ -34,12 +31,10 @@ class RestaurantListFragment :
         viewModel.restaurants.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    Log.d("log", it.toString())
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     restaurantListRecyclerViewAdapter.setData(it.value.body()!!)
                 }
                 is Resource.Failure -> {
-                    Log.d("log", it.toString())
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
@@ -53,7 +48,6 @@ class RestaurantListFragment :
     }
 
     fun setupRecyclerView() {
-        Log.d("recyclerview", "meghívódott a setupRecyclerview")
         restaurant_list_recyclreview.adapter = restaurantListRecyclerViewAdapter
         restaurant_list_recyclreview.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)

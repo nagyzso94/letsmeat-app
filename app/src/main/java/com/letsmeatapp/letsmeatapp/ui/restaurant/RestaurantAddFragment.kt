@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import com.letsmeatapp.letsmeatapp.databinding.RestaurantAddFragmentBinding
 import com.letsmeatapp.letsmeatapp.ui.auth.AuthViewModel
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import com.letsmeatapp.letsmeatapp.ui.home.HomeActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 import kotlinx.android.synthetic.main.restaurant_add_fragment.*
@@ -50,16 +52,37 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
                     }
                 }
                 is Resource.Failure -> {
-                    Log.d("log",it.toString())
-                    //Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+                    //Log.d("log",it.toString())
+                   Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+                    handleApiError(it) { createRestaurant() }
                 }
             }
         })
 
-        // TODO : Checking if every field is filled out, then enable save btn
+        binding.restaurantAddWebUri.addTextChangedListener {
+            val name: String = binding.restaurantAddTitle.text.toString()
+            val address: String = binding.restaurantAddAddress.text.toString()
+            val phoneNumber: String = binding.restaurantAddPhoneNumber.text.toString()
+            val webUri: String = binding.restaurantAddWebUri.text.toString()
+            val type: Int = binding.typeSpinner.selectedItemPosition
+            binding.addRestaurantSave.enable(name.isNotEmpty() && address.isNotEmpty() && phoneNumber.isNotEmpty() && webUri.isNotEmpty() && type != -1)
+        }
 
-        // TODO : Saving the restaurant
+        binding.addRestaurantSave.setOnClickListener {
 
+            // checking values
+            createRestaurant()
+        }
+
+    }
+
+    private fun createRestaurant() {
+        val name: String = binding.restaurantAddTitle.text.toString()
+        val address: String = binding.restaurantAddAddress.text.toString()
+        val phoneNumber: String = binding.restaurantAddPhoneNumber.text.toString()
+        val webUri: String = binding.restaurantAddWebUri.text.toString()
+        val type: Int = binding.typeSpinner.selectedItemPosition
+        viewModel.createRestaurant(name,address,phoneNumber,webUri,type)
     }
 
     override fun getViewModel(): Class<RestaurantViewModel> = RestaurantViewModel::class.java

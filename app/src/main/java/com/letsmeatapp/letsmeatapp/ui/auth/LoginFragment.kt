@@ -15,6 +15,7 @@ import com.letsmeatapp.letsmeatapp.data.network.AuthApi
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
 import com.letsmeatapp.letsmeatapp.ui.enable
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import com.letsmeatapp.letsmeatapp.ui.home.HomeActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 import com.letsmeatapp.letsmeatapp.ui.visible
@@ -28,18 +29,14 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.loginBtn.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
                         requireActivity().startNewActivity(HomeActivity::class.java)
                     }
-                    // Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
                 }
-                is Resource.Failure -> {
-                    Log.d("log",it.toString())
-                    //Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiError(it) { login() }
             }
         })
 
@@ -50,14 +47,18 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         }
 
         binding.loginBtn.setOnClickListener {
-            val email = binding.loginEmail.text.toString().trim()
-            val password = binding.loginPassword.text.toString().trim()
-            viewModel.login(email,password)
+            login()
         }
 
         binding.createAccountTxt.setOnClickListener {
             it.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
+    }
+
+    private fun login() {
+        val email = binding.loginEmail.text.toString().trim()
+        val password = binding.loginPassword.text.toString().trim()
+        viewModel.login(email,password)
     }
 
     override fun getViewModel() = AuthViewModel::class.java

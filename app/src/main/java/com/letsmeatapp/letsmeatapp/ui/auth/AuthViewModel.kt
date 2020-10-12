@@ -1,11 +1,12 @@
 package com.letsmeatapp.letsmeatapp.ui.auth
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
+import com.letsmeatapp.letsmeatapp.data.responses.GenericResponse
 import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
 import com.letsmeatapp.letsmeatapp.data.responses.RegisterResponse
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
@@ -41,5 +42,6 @@ class AuthViewModel(
         passwordConfirmation: String
     ) = viewModelScope.launch {
         _registerResponse.value = repository.register(name,email,password,passwordConfirmation)
+        Log.d("resp",_registerResponse.value.toString())
     }
 }
