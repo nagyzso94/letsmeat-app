@@ -1,7 +1,6 @@
 package com.letsmeatapp.letsmeatapp.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -16,9 +15,8 @@ import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
-import com.letsmeatapp.letsmeatapp.ui.home.HomeActivity
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
-import com.letsmeatapp.letsmeatapp.ui.visible
 import kotlinx.coroutines.launch
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
@@ -33,7 +31,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
-                        requireActivity().startNewActivity(HomeActivity::class.java)
+                        requireActivity().startNewActivity(RestaurantActivity::class.java)
                     }
                 }
                 is Resource.Failure -> handleApiError(it) { login() }

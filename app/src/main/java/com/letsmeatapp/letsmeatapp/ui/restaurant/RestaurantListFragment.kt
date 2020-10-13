@@ -12,14 +12,14 @@ import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
-import com.letsmeatapp.letsmeatapp.databinding.RestaurantsFragmentBinding
+import com.letsmeatapp.letsmeatapp.databinding.FragmentRestaurantListBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.restaurants_fragment.*
+import kotlinx.android.synthetic.main.fragment_restaurant_list.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 class RestaurantListFragment :
-    BaseFragment<RestaurantViewModel, RestaurantsFragmentBinding, RestaurantRepository>() {
+    BaseFragment<RestaurantViewModel, FragmentRestaurantListBinding, RestaurantRepository>() {
 
     private val restaurantListRecyclerViewAdapter by lazy { RestaurantListRecyclerViewAdapater() }
 
@@ -31,7 +31,7 @@ class RestaurantListFragment :
         viewModel.restaurants.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     restaurantListRecyclerViewAdapter.setData(it.value.body()!!)
                 }
                 is Resource.Failure -> {
@@ -58,7 +58,7 @@ class RestaurantListFragment :
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = RestaurantsFragmentBinding.inflate(inflater, container, false)
+    ) = FragmentRestaurantListBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository(): RestaurantRepository {
         val token = runBlocking { userPreferences.authToken.first() }

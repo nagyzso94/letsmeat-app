@@ -9,7 +9,7 @@
         android:id="@+id/restaurantListFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantListFragment"
         android:label="restaurant_list_fragment"
-        tools:layout="@layout/restaurants_fragment" >
+        tools:layout="@layout/fragment_restaurant_list" >
         <action
             android:id="@+id/action_restaurantListFragment_to_restaurantAddFragment"
             app:destination="@id/restaurantAddFragment" />

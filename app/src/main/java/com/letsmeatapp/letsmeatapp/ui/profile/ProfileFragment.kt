@@ -1,4 +1,4 @@
-package com.letsmeatapp.letsmeatapp.ui.home
+package com.letsmeatapp.letsmeatapp.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +10,12 @@ import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.User
-import com.letsmeatapp.letsmeatapp.databinding.FragmentHomeBinding
-import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
+import com.letsmeatapp.letsmeatapp.databinding.FragmentProfileBinding
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
-class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserRepository>() {
+class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding, UserRepository>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,8 +25,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
         viewModel.user.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Success -> {
-                    //updateUI(it.value.user)
-                    requireActivity().startNewActivity(RestaurantActivity::class.java)
+                    updateUI(it.value.user)
+                    //requireActivity().startNewActivity(HomeActivity2::class.java)
                 }
             }
         })
@@ -46,12 +45,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
         }
     }
 
-    override fun getViewModel(): Class<HomeViewModel> = HomeViewModel::class.java
+    override fun getViewModel(): Class<ProfileViewModel> = ProfileViewModel::class.java
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentHomeBinding.inflate(inflater, container,false)
+    ) = FragmentProfileBinding.inflate(inflater,container,false)
 
     override fun getFragmentRepository(): UserRepository {
         val token = runBlocking { userPreferences.authToken.first() }

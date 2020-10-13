@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/action_main"
-        android:enabled="true"
-        android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:id="@+id/my_reviews"
+        android:title="Véleményeim"
+        android:icon="@drawable/ic_reviews" />
+
     <item
-        android:id="@+id/action_home"
-        android:enabled="true"
-        android:icon="@drawable/ic_account"
-        android:title="User" />
+        android:id="@+id/my_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:id="@+id/my_profile"
+        android:title="Profilom"
+        android:icon="@drawable/ic_profil" />
 
 
 </menu>

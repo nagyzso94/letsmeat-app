@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.review.ReviewActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity2"></activity>
+        <activity android:name=".ui.review.ReviewActivity" />
         <activity android:name=".ui.restaurant.RestaurantActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

@@ -1,10 +1,7 @@
 package com.letsmeatapp.letsmeatapp.ui.restaurant
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
@@ -12,20 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.letsmeatapp.letsmeatapp.R
-import com.letsmeatapp.letsmeatapp.data.network.RemoteDataSource
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
-import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
-import com.letsmeatapp.letsmeatapp.databinding.FragmentLoginBinding
 import com.letsmeatapp.letsmeatapp.databinding.RestaurantAddFragmentBinding
-import com.letsmeatapp.letsmeatapp.ui.auth.AuthViewModel
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
-import com.letsmeatapp.letsmeatapp.ui.home.HomeActivity
-import com.letsmeatapp.letsmeatapp.ui.startNewActivity
-import kotlinx.android.synthetic.main.restaurant_add_fragment.*
 import kotlinx.coroutines.launch
 
 class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
