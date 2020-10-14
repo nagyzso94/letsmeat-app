@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.HomeActivity2"></activity>
+        <activity android:name=".ui.review.MyReviewsActivity"></activity>
         <activity android:name=".ui.review.ReviewActivity" />
         <activity android:name=".ui.restaurant.RestaurantActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />

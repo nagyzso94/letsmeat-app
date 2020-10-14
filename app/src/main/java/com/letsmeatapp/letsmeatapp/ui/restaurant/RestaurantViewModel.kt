@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
+import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class RestaurantViewModel(
-    private val repository: RestaurantRepository
+    private val repository: RestaurantRepository,
 ) : BaseViewModel(repository) {
 
     // Getting restaurants list from the repository

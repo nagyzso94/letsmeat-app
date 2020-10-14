@@ -4,8 +4,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
@@ -13,6 +20,7 @@ import com.letsmeatapp.letsmeatapp.databinding.FragmentRestaurantDetailsBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.review.ReviewActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
+import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -38,7 +46,8 @@ class RestaurantDetailsFragment : BaseFragment<RestaurantViewModel, FragmentRest
         }
 
         binding.restaurantDetailGotoreviewsBtn.setOnClickListener {
-            requireActivity().startNewActivity(ReviewActivity::class.java)
+            val action = RestaurantDetailsFragmentDirections.actionRestaurantDetailsToNavReviews2(restaurant)
+            findNavController().navigate(action)
         }
     }
 
@@ -56,5 +65,4 @@ class RestaurantDetailsFragment : BaseFragment<RestaurantViewModel, FragmentRest
         val api = remoteDataSource.buildApi(RestaurantApi::class.java, token)
         return RestaurantRepository(api)
     }
-
 }

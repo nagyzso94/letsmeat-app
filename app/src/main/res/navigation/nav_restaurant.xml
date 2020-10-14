@@ -9,7 +9,7 @@
         android:id="@+id/restaurantListFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantListFragment"
         android:label="restaurant_list_fragment"
-        tools:layout="@layout/fragment_restaurant_list" >
+        tools:layout="@layout/fragment_restaurant_list">
         <action
             android:id="@+id/action_restaurantListFragment_to_restaurantAddFragment"
             app:destination="@id/restaurantAddFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/restaurantAddFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment"
         android:label="restaurant_add_fragment"
-        tools:layout="@layout/restaurant_add_fragment" >
+        tools:layout="@layout/restaurant_add_fragment">
         <action
             android:id="@+id/action_restaurantAddFragment_to_restaurantListFragment"
             app:destination="@id/restaurantListFragment" />
@@ -30,12 +30,54 @@
         android:id="@+id/restaurantDetails"
         android:name="com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragment"
         android:label="fragment_restaurant_details"
-        tools:layout="@layout/fragment_restaurant_details" >
+        tools:layout="@layout/fragment_restaurant_details">
         <action
             android:id="@+id/action_restaurantDetails_to_restaurantListFragment"
             app:destination="@id/restaurantListFragment" />
         <argument
             android:name="currentItem"
             app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
+        <action
+            android:id="@+id/action_restaurantDetails_to_reviewActivity"
+            app:destination="@id/reviewActivity" />
+        <action
+            android:id="@+id/action_restaurantDetails_to_nav_reviews2"
+            app:destination="@id/nested_reviews_navigation" />
     </fragment>
+    <activity
+        android:id="@+id/reviewActivity"
+        android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewActivity"
+        android:label="activity_review"
+        tools:layout="@layout/activity_review">
+        <argument
+            android:name="myRestaurant"
+            app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
+    </activity>
+    <navigation android:id="@+id/nested_reviews_navigation"
+        app:startDestination="@id/reviewFragment">
+        <argument
+            android:name="nestedRestaurant"
+            app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
+        <fragment
+            android:id="@+id/reviewAddFragment2"
+            android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewAddFragment"
+            android:label="fragment_review_add"
+            tools:layout="@layout/fragment_review_add" >
+            <action
+                android:id="@+id/action_reviewAddFragment2_to_reviewFragment"
+                app:destination="@id/reviewFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/reviewFragment"
+            android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewFragment"
+            android:label="ReviewFragment" >
+            <action
+                android:id="@+id/action_reviewFragment_to_reviewAddFragment2"
+                app:destination="@id/reviewAddFragment2" />
+            <argument
+                android:name="nestedRestaurant"
+                app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
+        </fragment>
+
+    </navigation>
 </navigation>

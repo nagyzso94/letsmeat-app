@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.DataStore
 import androidx.datastore.createDataStore
 import androidx.datastore.preferences.*
+import com.letsmeatapp.letsmeatapp.data.responses.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -28,6 +29,17 @@ class UserPreferences(
          }
     }
 
+    val userId : Flow<Int?>
+        get() = dataStore.data.map { preferences ->
+            preferences[KEY_USER]
+        }
+
+    suspend fun saveUserData(user: Int){
+        dataStore.edit { preferences ->
+            preferences[KEY_USER] = user
+        }
+    }
+
     suspend fun clear(){
         dataStore.edit { preferences ->
             preferences.clear()
@@ -36,6 +48,7 @@ class UserPreferences(
 
     companion object {
         private val KEY_AUTH = preferencesKey<String>(name="key_auth")
+        private val KEY_USER = preferencesKey<Int>(name="key_user")
     }
 
 }

@@ -1,32 +1,86 @@
 package com.letsmeatapp.letsmeatapp.ui.review
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.letsmeatapp.letsmeatapp.R
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.letsmeatapp.letsmeatapp.NestedReviewsNavigationArgs
+import com.letsmeatapp.letsmeatapp.data.network.Resource
+import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
+import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
+import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
+import com.letsmeatapp.letsmeatapp.data.responses.User
+import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewBinding
+import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.base.ObservableModel
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantListRecyclerViewAdapter
+import kotlinx.android.synthetic.main.fragment_restaurant_list.*
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
-class ReviewFragment : Fragment() {
+class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, ReviewRepository>() {
 
-    companion object {
-        fun newInstance() = ReviewFragment()
-    }
+    private var currentRestaurant: Restaurant? = null
+    private val args: NestedReviewsNavigationArgs by navArgs()
+    private val reviewListRecycleAdapter by lazy { ReviewListRecycleAdapter() }
 
-    private lateinit var viewModel: ReviewViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_review, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ReviewViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        currentRestaurant = args.nestedRestaurant
+        val id = args.nestedRestaurant.id
+        // current userId = userId
+        // ellenőrzés: Toast.makeText(this.context, currentRestaurant?.id.toString()+"fragment"+ userId.toString(), Toast.LENGTH_SHORT).show()
+
+        setupRecyclerView()
+        viewModel.getReviewsbyRestaurantId(id)
+        viewModel.restaurantReviews.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    //Toast.makeText(requireContext(), it.value.body().toString(), Toast.LENGTH_SHORT).show()
+                    reviewListRecycleAdapter.setData(it.value.body()!!)
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        })
+
+    }
+
+    fun setupRecyclerView() {
+        restaurant_list_recyclreview.adapter = reviewListRecycleAdapter
+        // TODO row_layout elkészítés után meghívni :D
+        //restaurant_list_recyclreview.layoutManager =
+         //   StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+    }
+
+
+    override fun getViewModel() = ReviewViewModel::class.java
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentReviewBinding.inflate(inflater,container,false)
+
+    override fun getFragmentRepository(): ReviewRepository {
+        val token = runBlocking { userPreferences.authToken.first() }
+        val api = remoteDataSource.buildApi(ReviewApi::class.java, token)
+        return ReviewRepository(api)
     }
 
 }

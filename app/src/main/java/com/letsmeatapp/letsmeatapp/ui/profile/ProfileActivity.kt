@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
+import com.letsmeatapp.letsmeatapp.ui.review.MyReviewsActivity
 import com.letsmeatapp.letsmeatapp.ui.review.ReviewActivity
 import kotlinx.android.synthetic.main.activity_profile.*
 
@@ -22,7 +23,7 @@ class ProfileActivity : AppCompatActivity() {
                     overridePendingTransition(0, 0);
                 }
                 R.id.my_reviews -> {
-                    startActivity(Intent(this, ReviewActivity::class.java))
+                    startActivity(Intent(this, MyReviewsActivity::class.java))
                     overridePendingTransition(0, 0);
                 }
             }

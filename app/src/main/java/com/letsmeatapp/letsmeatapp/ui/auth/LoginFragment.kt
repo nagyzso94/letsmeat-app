@@ -1,8 +1,10 @@
 package com.letsmeatapp.letsmeatapp.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -31,6 +33,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
+                        viewModel.saveUserData(it.value.user.id!!)
                         requireActivity().startNewActivity(RestaurantActivity::class.java)
                     }
                 }

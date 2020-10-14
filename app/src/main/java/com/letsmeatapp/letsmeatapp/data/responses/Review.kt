@@ -4,7 +4,7 @@ data class Review(
     val cleanness: Int,
     val created_at: String,
     val id: Int,
-    val other_aspect: String,
+    val other_aspect: String?,
     val prices: Int,
     val restaurant_id: Int,
     val savouriness: Int,

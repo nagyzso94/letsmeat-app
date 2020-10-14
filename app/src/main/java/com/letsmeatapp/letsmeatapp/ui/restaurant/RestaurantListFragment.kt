@@ -1,7 +1,6 @@
 package com.letsmeatapp.letsmeatapp.ui.restaurant
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -21,7 +20,7 @@ import kotlinx.coroutines.runBlocking
 class RestaurantListFragment :
     BaseFragment<RestaurantViewModel, FragmentRestaurantListBinding, RestaurantRepository>() {
 
-    private val restaurantListRecyclerViewAdapter by lazy { RestaurantListRecyclerViewAdapater() }
+    private val restaurantListRecyclerViewAdapter by lazy { RestaurantListRecyclerViewAdapter() }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

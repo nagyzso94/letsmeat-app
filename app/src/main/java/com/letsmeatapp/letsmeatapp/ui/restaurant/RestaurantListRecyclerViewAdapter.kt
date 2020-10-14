@@ -9,7 +9,7 @@ import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import kotlinx.android.synthetic.main.restaurant_item_row.view.*
 
-class RestaurantListRecyclerViewAdapater : RecyclerView.Adapter<RestaurantListRecyclerViewAdapater.MyViewHolder>(){
+class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRecyclerViewAdapter.MyViewHolder>(){
 
     private var restaurantList = emptyList<Restaurant>()
 

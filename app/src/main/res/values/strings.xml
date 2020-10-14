@@ -19,6 +19,7 @@
     <string name="register">Regisztráció</string>
     <string name="go_to_reviews_btn">Irány a vélemények!</string>
     <string name="go_to_website">Lecsekkolom a weboldalukat</string>
+    <string name="logout">Kilépés</string>
 
     <string-array name="food_types">
         <item>Magyar</item>

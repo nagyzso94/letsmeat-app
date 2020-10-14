@@ -1,8 +1,8 @@
 package com.letsmeatapp.letsmeatapp.data.responses
 
 data class RestaurantStatistics(
-    val cleanness: String,
-    val prices: String,
-    val savouriness: String,
-    val service: String
+    val cleanness: Int,
+    val prices: Int,
+    val savouriness: Int,
+    val service: Int
 )

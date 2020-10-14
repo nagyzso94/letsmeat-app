@@ -12,11 +12,13 @@ import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment
 
 fun <A: Activity> Activity.startNewActivity(activity: Class<A>){
+    overridePendingTransition(0, 0);
     Intent(this, activity).also {
         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(it)
     }
 }
+
 
 fun View.visible(isVisible: Boolean){
     visibility = if (isVisible) View.VISIBLE else View.GONE

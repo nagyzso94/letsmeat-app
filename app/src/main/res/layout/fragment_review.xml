@@ -5,10 +5,10 @@
     android:id="@+id/review"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.ReviewFragment">
+    tools:context=".ui.review.ReviewFragment">
 
     <TextView
-        android:id="@+id/message"
+        android:id="@+id/review_fr_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ReviewFragment"

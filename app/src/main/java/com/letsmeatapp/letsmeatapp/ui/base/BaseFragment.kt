@@ -23,6 +23,7 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
     protected val remoteDataSource = RemoteDataSource()
     protected lateinit var viewModel : VM
     protected lateinit var userPreferences: UserPreferences
+    protected var userId: Int? = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +35,10 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModel())
 
-        lifecycleScope.launch { userPreferences.authToken.first() }
+        lifecycleScope.launch {
+            userPreferences.authToken.first()
+            userId = userPreferences.userId.first()
+        }
 
         return binding.root
     }
@@ -46,6 +50,10 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         userPreferences.clear()
         requireActivity().startNewActivity(AuthActivity::class.java)
     }
+
+  //  fun getUser() = lifecycleScope.launch{
+  //      userId = userPreferences.userId.first()
+  //  }
 
     abstract fun getViewModel(): Class<VM>
 

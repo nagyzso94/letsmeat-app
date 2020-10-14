@@ -9,6 +9,7 @@ import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
 import com.letsmeatapp.letsmeatapp.data.responses.GenericResponse
 import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
 import com.letsmeatapp.letsmeatapp.data.responses.RegisterResponse
+import com.letsmeatapp.letsmeatapp.data.responses.User
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -29,6 +30,10 @@ class AuthViewModel(
 
     suspend fun saveAuthToken(token:String){
         repository.saveAuthToken(token)
+    }
+
+    suspend fun saveUserData(userId: Int){
+        repository.saveUserData(userId)
     }
 
     private val _registerResponse : MutableLiveData<Resource<RegisterResponse>> = MutableLiveData()
