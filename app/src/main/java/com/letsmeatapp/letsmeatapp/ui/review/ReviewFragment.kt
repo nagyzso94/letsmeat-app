@@ -21,6 +21,7 @@ import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.base.ObservableModel
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantListRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_restaurant_list.*
+import kotlinx.android.synthetic.main.fragment_review.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -34,7 +35,6 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,12 +63,9 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
     }
 
     fun setupRecyclerView() {
-        restaurant_list_recyclreview.adapter = reviewListRecycleAdapter
-        // TODO row_layout elkészítés után meghívni :D
-        //restaurant_list_recyclreview.layoutManager =
-         //   StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        review_recyclerview.adapter = reviewListRecycleAdapter
+        review_recyclerview.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
     }
-
 
     override fun getViewModel() = ReviewViewModel::class.java
 

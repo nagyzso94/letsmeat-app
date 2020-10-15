@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
-import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
-import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
-import com.letsmeatapp.letsmeatapp.data.responses.Review
-import com.letsmeatapp.letsmeatapp.data.responses.ReviewCreateResponse
+import com.letsmeatapp.letsmeatapp.data.responses.*
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import com.letsmeatapp.letsmeatapp.ui.profile.ProfileViewModel
 import kotlinx.coroutines.launch
@@ -20,14 +17,17 @@ class ReviewViewModel(
 ) : BaseViewModel(repository) {
 
     // Get reviews by restaurantId/UserId - they return list of restaurants
-    private val _restaurantReviews: MutableLiveData<Resource<Response<List<Review>>>> = MutableLiveData()
-    val restaurantReviews: LiveData<Resource<Response<List<Review>>>>
+    private val _restaurantReviews: MutableLiveData<Resource<Response<List<ReviewResponseItem>>>> = MutableLiveData()
+    val restaurantReviews: LiveData<Resource<Response<List<ReviewResponseItem>>>>
         get() = _restaurantReviews
 
     fun getReviewsbyRestaurantId(restaurantId: Int) = viewModelScope.launch {
         _restaurantReviews.value = repository.getReviewsbyRestaurantId(restaurantId)
     }
 
+    fun getReviewsbyUserId(userId: Int) = viewModelScope.launch {
+        _restaurantReviews.value = repository.getReviewsbyRestaurantId(userId)
+    }
 
     // Retrieving created review from repository
     private val _reviewCreateResponse: MutableLiveData<Resource<ReviewCreateResponse>> = MutableLiveData()

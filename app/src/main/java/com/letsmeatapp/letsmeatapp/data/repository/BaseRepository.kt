@@ -40,10 +40,4 @@ abstract class BaseRepository {
     suspend fun getUser(api: UserApi) = safeApiCall {
         api.getUser()
     }
-
-    suspend fun getRestaurant(api: RestaurantApi) = safeApiCall {
-        api.getRestaurants()
-        // todo csinálni egy restaurant lekérést ID alapján
-    }
-
 }

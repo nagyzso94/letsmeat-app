@@ -8,7 +8,7 @@
     tools:context=".ui.review.ReviewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/review_recyclreview"
+        android:id="@+id/review_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"

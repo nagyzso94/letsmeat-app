@@ -1,9 +1,6 @@
 package com.letsmeatapp.letsmeatapp.data.network
 
-import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
-import com.letsmeatapp.letsmeatapp.data.responses.RestaurantStatistics
-import com.letsmeatapp.letsmeatapp.data.responses.Review
-import com.letsmeatapp.letsmeatapp.data.responses.ReviewCreateResponse
+import com.letsmeatapp.letsmeatapp.data.responses.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -28,12 +25,12 @@ interface ReviewApi {
     @GET("reviews/{userId}")
     suspend fun getReviewsbyUserId(
         @Path("userId") number: Int
-    ): Response<List<Review>>
+    ): Response<List<ReviewResponseItem>>
 
     @GET("reviews/show/{restaurantId}")
     suspend fun getReviewsbyRestaurantId(
         @Path("restaurantId") number: Int
-    ): Response<List<Review>>
+    ): Response<List<ReviewResponseItem>>
 
     @GET("reviews/statistics/{restaurantId}")
     suspend fun getStatistics(
