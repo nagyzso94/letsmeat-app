@@ -2,7 +2,7 @@
     <string name="app_name">Let\'s (m)eat</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="restaurant_title">Név</string>
-    <string name="other_aspect">Egyéb értékelés</string>
+    <string name="other_aspect">Egyéb</string>
     <string name="restaurant_address">Cím</string>
     <string name="restaurant_phone">+36 (30) 1234 567</string>
     <string name="restaurant_uri">https://ettermem.hu</string>
@@ -20,6 +20,10 @@
     <string name="go_to_reviews_btn">Irány a vélemények!</string>
     <string name="go_to_website">Lecsekkolom a weboldalukat</string>
     <string name="logout">Kilépés</string>
+    <string name="savourinness">Ízletesség</string>
+    <string name="prices">Árak</string>
+    <string name="service">Kiszolgálás</string>
+    <string name="cleanness">Tisztaság</string>
 
     <string-array name="food_types">
         <item>Magyar</item>

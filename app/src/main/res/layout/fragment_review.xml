@@ -7,14 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.review.ReviewFragment">
 
-    <TextView
-        android:id="@+id/review_fr_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ReviewFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/review_recyclreview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_add_white"
+        app:tint="@color/white"
+        android:backgroundTint="@color/manhattan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

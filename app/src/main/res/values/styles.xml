@@ -14,4 +14,11 @@
         <item name="android:fontFamily">@font/roboto_regular</item>
     </style>
 
+    <style name="CustomRatingBarHeartStyle" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_rating_heart</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">47dip</item>
+    </style>
+
+
 </resources>

@@ -1,6 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/row_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/item_background"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/row_whos_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingBottom="4dp"
+            android:text="User neve"
+            android:textColor="@color/light_gray"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TableLayout
+            android:id="@+id/add_review_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/row_whos_review">
+
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/savourinness"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/savourinnes_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.5" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/prices"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/prices_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.5" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/service"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text"/>
+
+                <RatingBar
+                    android:id="@+id/service_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.5" />
+            </TableRow>
+
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/cleanness"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/cleanness_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.5" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/other_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:padding="2dp"
+            android:text="@string/other_aspect"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/small_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_review_table" />
+
+        <TextView
+            android:id="@+id/other_aspect_rating"
+            style="@style/CustomRatingBarHeartStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:maxLines="8"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius ut lacus in convallis. Donec sollicitudin eu augue nec faucibus. Aliquam quis turpis eu ex luctus pretium. Mauris maximus molestie nibh, in tincidunt sem fermentum ac."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/add_review_table" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.29" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

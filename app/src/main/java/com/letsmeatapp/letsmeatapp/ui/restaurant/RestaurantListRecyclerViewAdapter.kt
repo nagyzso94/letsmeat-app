@@ -27,7 +27,7 @@ class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRec
         holder: MyViewHolder,
         position: Int
     ) {
-        holder.itemView.row_restaurant_name.text = restaurantList[position].name
+        holder.itemView.row_whos_review.text = restaurantList[position].name
         when(restaurantList[position].type){
             0 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.hungarian_food)
             1 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.italian_food)
