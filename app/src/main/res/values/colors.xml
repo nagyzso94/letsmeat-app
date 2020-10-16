@@ -18,4 +18,5 @@
     <color name="rum_swizzle_light">#F5F5EF</color>
     <color name="rum_swizzle_lightest">#FFFFFB</color>
     <color name="light_manhattan">#F5D08B</color>
+    <color name="error_color">#d12121</color>
 </resources>

@@ -1,13 +1,19 @@
 package com.letsmeatapp.letsmeatapp.ui.restaurant
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.ColorInt
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.color.MaterialColors
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
@@ -18,6 +24,7 @@ import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import kotlinx.coroutines.launch
 
+
 class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -26,20 +33,28 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         binding.addRestaurantSave.enable(false)
 
         viewModel.restaurantCreateResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         findNavController().navigate(R.id.action_restaurantAddFragment_to_restaurantListFragment)
-                        Toast.makeText(requireContext(),"Sikeres étterem hozzáadás!",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Sikeres étterem hozzáadás!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 is Resource.Failure -> {
                     //Log.d("log",it.toString())
-                   Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createRestaurant() }
                 }
             }
         })
+
+        binding.restaurantAddTitle.addTextChangedListener{
+            checkNameValue(it.toString())
+        }
 
         binding.restaurantAddWebUri.addTextChangedListener {
             val name: String = binding.restaurantAddTitle.text.toString()
@@ -62,16 +77,31 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         val phoneNumber: String = binding.restaurantAddPhoneNumber.text.toString()
         val webUri: String = binding.restaurantAddWebUri.text.toString()
         val type: Int = binding.typeSpinner.selectedItemPosition
-        viewModel.createRestaurant(name,address,phoneNumber,webUri,type)
+        viewModel.createRestaurant(name, address, phoneNumber, webUri, type)
     }
+
+    private fun checkNameValue(name: String) : Boolean {
+        return if (name.isEmpty()) {
+            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(requireContext(),R.drawable.ic_error),null)
+            true
+        } else {
+            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(requireContext(),R.drawable.ic_check),null)
+            false
+        }
+    }
+
 
     override fun getViewModel(): Class<RestaurantViewModel> = RestaurantViewModel::class.java
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = RestaurantAddFragmentBinding.inflate(inflater,container,false)
+    ) = RestaurantAddFragmentBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = RestaurantRepository(remoteDataSource.buildApi(RestaurantApi::class.java))
+    override fun getFragmentRepository() = RestaurantRepository(
+        remoteDataSource.buildApi(
+            RestaurantApi::class.java
+        )
+    )
 
 }
