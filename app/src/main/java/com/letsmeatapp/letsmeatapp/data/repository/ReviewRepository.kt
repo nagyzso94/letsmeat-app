@@ -18,10 +18,10 @@ class ReviewRepository(
     suspend fun createReview(
         user_id: Int,
         restaurant_id: Int,
-        savouriness: Int,
-        prices: Int,
-        service: Int,
-        cleanness: Int,
+        savouriness: Double,
+        prices: Double,
+        service: Double,
+        cleanness: Double,
         other_aspect: String?
     ) = safeApiCall {
         api.createReview(user_id,restaurant_id,savouriness,prices,service,cleanness, other_aspect)

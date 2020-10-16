@@ -20,14 +20,6 @@ import kotlinx.coroutines.launch
 
 class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
 
-
-  /*  override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.restaurant_add_fragment, container, false)
-    }*/
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -59,7 +51,6 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         }
 
         binding.addRestaurantSave.setOnClickListener {
-            // checking values
             createRestaurant()
         }
 

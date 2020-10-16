@@ -47,12 +47,12 @@
             <TableRow android:gravity="center_vertical">
                 <TextView
                     android:fontFamily="@font/roboto_light"
-                    android:text="@string/savourinness"
+                    android:text="@string/savouriness"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/small_text" />
 
                 <RatingBar
-                    android:id="@+id/savourinnes_rating"
+                    android:id="@+id/add_savouriness_rating"
                     style="@style/CustomRatingBarHeartStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     android:textSize="@dimen/small_text" />
 
                 <RatingBar
-                    android:id="@+id/prices_rating"
+                    android:id="@+id/add_prices_rating"
                     style="@style/CustomRatingBarHeartStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     android:textSize="@dimen/small_text"/>
 
                 <RatingBar
-                    android:id="@+id/service_rating"
+                    android:id="@+id/add_service_rating"
                     style="@style/CustomRatingBarHeartStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     android:textSize="@dimen/small_text" />
 
                 <RatingBar
-                    android:id="@+id/cleanness_rating"
+                    android:id="@+id/add_cleanness_rating"
                     style="@style/CustomRatingBarHeartStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

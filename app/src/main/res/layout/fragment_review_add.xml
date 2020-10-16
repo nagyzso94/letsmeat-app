@@ -1,14 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="30dp"
     tools:context=".ui.review.ReviewAddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/review_add_screen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/how_satisfied"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:alpha="0.9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/add_review"
+            android:alpha="0.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_add_screen_title" />
+
+        <TableLayout
+            android:id="@+id/add_review_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+            <TableRow
+                android:gravity="center_vertical"
+                android:padding="@dimen/table_padding">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/savouriness"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/add_savouriness_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.1" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_vertical"
+                android:padding="@dimen/table_padding">
+
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/prices"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/add_prices_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.1" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_vertical"
+                android:padding="@dimen/table_padding">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/service"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text"/>
+
+                <RatingBar
+                    android:id="@+id/add_service_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.1" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_vertical"
+                android:padding="@dimen/table_padding">
+                <TextView
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/cleanness"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/small_text" />
+
+                <RatingBar
+                    android:id="@+id/add_cleanness_rating"
+                    style="@style/CustomRatingBarHeartStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:rating="2.5"
+                    android:stepSize="0.1" />
+            </TableRow>
+        </TableLayout>
+
+        <EditText
+            android:id="@+id/review_add_other_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_edittext_shape_review"
+            android:ems="10"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/review_other_aspect_txt"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:padding="12dp"
+            android:textColorHint="@color/light_manhattan"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_review_table" />
+
+        <Button
+            android:id="@+id/review_save_btn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner_btn"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_add_other_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

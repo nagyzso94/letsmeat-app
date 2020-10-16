@@ -30,17 +30,17 @@ class ReviewViewModel(
     }
 
     // Retrieving created review from repository
-    private val _reviewCreateResponse: MutableLiveData<Resource<ReviewCreateResponse>> = MutableLiveData()
-    val restaurantCreateResponse: LiveData<Resource<ReviewCreateResponse>>
+    private val _reviewCreateResponse: MutableLiveData<Resource<ReviewCreationSuccess>> = MutableLiveData()
+    val reviewCreateResponse: LiveData<Resource<ReviewCreationSuccess>>
         get() = _reviewCreateResponse
 
     fun createReview(
         user_id: Int,
         restaurant_id: Int,
-        savouriness: Int,
-        prices: Int,
-        service: Int,
-        cleanness: Int,
+        savouriness: Double,
+        prices: Double,
+        service: Double,
+        cleanness: Double,
         other_aspect: String?
     ) = viewModelScope.launch {
         _reviewCreateResponse.value = repository.createReview(user_id,restaurant_id,savouriness,prices,service,cleanness,other_aspect)

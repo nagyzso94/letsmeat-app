@@ -20,10 +20,12 @@
     <string name="go_to_reviews_btn">Irány a vélemények!</string>
     <string name="go_to_website">Lecsekkolom a weboldalukat</string>
     <string name="logout">Kilépés</string>
-    <string name="savourinness">Ízletesség</string>
+    <string name="savouriness">Ízletesség</string>
     <string name="prices">Árak</string>
     <string name="service">Kiszolgálás</string>
     <string name="cleanness">Tisztaság</string>
+    <string name="how_satisfied">Mennyire voltál megelégedve?</string>
+    <string name="review_other_aspect_txt">Egyéb mondanivalód van? Jöhet!</string>
 
     <string-array name="food_types">
         <item>Magyar</item>

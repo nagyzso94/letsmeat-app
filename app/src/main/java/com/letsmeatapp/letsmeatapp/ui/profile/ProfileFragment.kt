@@ -1,21 +1,16 @@
 package com.letsmeatapp.letsmeatapp.ui.profile
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.User
 import com.letsmeatapp.letsmeatapp.databinding.FragmentProfileBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
-import com.letsmeatapp.letsmeatapp.ui.base.ObservableModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 

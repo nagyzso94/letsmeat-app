@@ -66,6 +66,9 @@
             <action
                 android:id="@+id/action_reviewAddFragment2_to_reviewFragment"
                 app:destination="@id/reviewFragment" />
+            <argument
+                android:name="currentRestaurant"
+                app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
         </fragment>
         <fragment
             android:id="@+id/reviewFragment"

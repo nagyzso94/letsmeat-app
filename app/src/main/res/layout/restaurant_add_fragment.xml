@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/restaurant_add_screen_title"
+        android:id="@+id/review_add_screen_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/restaurant_add_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_add_screen_title" />
+        app:layout_constraintTop_toBottomOf="@+id/review_add_screen_title" />
 
     <EditText
         android:id="@+id/restaurant_add_title"

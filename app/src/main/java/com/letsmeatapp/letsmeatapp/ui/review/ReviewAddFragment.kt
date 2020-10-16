@@ -1,25 +1,99 @@
 package com.letsmeatapp.letsmeatapp.ui.review
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.letsmeatapp.letsmeatapp.R
+import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
+import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewAddBinding
-import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.enable
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
+import kotlinx.android.synthetic.main.review_item_row.*
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding, ReviewRepository>() {
 
+    private var currentRestaurant: Restaurant? = null
+    private val args: ReviewAddFragmentArgs by navArgs()
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        currentRestaurant = args.currentRestaurant
+
+        Toast.makeText(this.context, currentRestaurant!!.id.toString(), Toast.LENGTH_SHORT).show()
         // todo ide jönnek majd az design elemekkel való összekötések, response megfigyelések
+        binding.reviewSaveBtn.enable(false)
+
+        viewModel.reviewCreateResponse.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is Resource.Success -> {
+                    lifecycleScope.launch {
+                        findNavController().navigate(R.id.action_reviewAddFragment2_to_reviewFragment)
+                        Toast.makeText(requireContext(),"Sikeres vélemény hozzáadás!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    //Log.d("log",it.toString())
+                    Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_SHORT).show()
+                    handleApiError(it) { createReview() }
+                }
+            }
+        })
+
+
+        binding.reviewAddOtherText.addTextChangedListener {
+            val userId = userId!!
+            val restaurantId = args.currentRestaurant.id!!
+            val savouriness = binding.addSavourinessRating.rating.toDouble()
+            val prices = binding.addPricesRating.rating.toDouble()
+            val service = binding.addServiceRating.rating.toDouble()
+            val cleanness = binding.addCleannessRating.rating.toDouble()
+            val otherAspect = binding.reviewAddOtherText.text.toString()
+        }
+
+        var savourinessSet: Boolean = false
+        var pricesSet: Boolean = false
+        var serviceSet: Boolean = false
+
+        binding.addSavourinessRating.setOnRatingBarChangeListener { ratingBar, fl, b -> savourinessSet = b }
+        binding.addPricesRating.setOnRatingBarChangeListener { ratingBar, fl, b -> pricesSet = b }
+        binding.addServiceRating.setOnRatingBarChangeListener { ratingBar, fl, b -> serviceSet = b }
+        binding.addCleannessRating.setOnRatingBarChangeListener { ratingBar, numsStars, b ->
+            val userId = userId!!
+            val restaurantId = args.currentRestaurant.id!!
+            //Toast.makeText(requireContext(), "userId: $userId, restaurantId: $restaurantId, cleanness: ${add_cleanness_rating.rating}", Toast.LENGTH_SHORT).show()
+            binding.reviewSaveBtn.enable(userId != 0 && restaurantId != 0 && savourinessSet && pricesSet && serviceSet && b)
+        }
+
+        binding.reviewSaveBtn.setOnClickListener {
+            createReview()
+            val action = ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(args.currentRestaurant)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun createReview() {
+        val userId = userId!!
+        val restaurantId = args.currentRestaurant.id!!
+        val savouriness = binding.addSavourinessRating.rating.toDouble()
+        val prices = binding.addPricesRating.rating.toDouble()
+        val service = binding.addServiceRating.rating.toDouble()
+        val cleanness = binding.addCleannessRating.rating.toDouble()
+        val otherAspect = binding.reviewAddOtherText.text.toString()
+        viewModel.createReview(userId,restaurantId,savouriness,prices,service,cleanness, otherAspect)
     }
 
     override fun getViewModel() = ReviewViewModel::class.java

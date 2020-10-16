@@ -46,6 +46,7 @@ class RestaurantDetailsFragment : BaseFragment<RestaurantViewModel, FragmentRest
         }
 
         binding.restaurantDetailGotoreviewsBtn.setOnClickListener {
+            //requireActivity().startNewActivity(ReviewActivity::class.java)
             val action = RestaurantDetailsFragmentDirections.actionRestaurantDetailsToNavReviews2(restaurant)
             findNavController().navigate(action)
         }
