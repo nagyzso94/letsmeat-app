@@ -35,7 +35,7 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
         currentRestaurant = args.nestedRestaurant
         val id = args.nestedRestaurant.id
         // current userId = userId
-        Toast.makeText(this.context, currentRestaurant?.id.toString()+"fragment"+ userId.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this.context, currentRestaurant?.id.toString()+"fragment"+ userId.toString(), Toast.LENGTH_SHORT).show()
 
         setupRecyclerView()
         viewModel.getReviewsbyRestaurantId(id)

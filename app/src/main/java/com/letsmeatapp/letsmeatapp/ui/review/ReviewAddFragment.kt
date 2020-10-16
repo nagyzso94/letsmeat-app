@@ -33,20 +33,19 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
 
         currentRestaurant = args.currentRestaurant
 
-        Toast.makeText(this.context, currentRestaurant!!.id.toString(), Toast.LENGTH_SHORT).show()
-        // todo ide jönnek majd az design elemekkel való összekötések, response megfigyelések
+        //Toast.makeText(this.context, currentRestaurant!!.id.toString(), Toast.LENGTH_SHORT).show()
         binding.reviewSaveBtn.enable(false)
 
         viewModel.reviewCreateResponse.observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Success -> {
                     lifecycleScope.launch {
-                        findNavController().navigate(R.id.action_reviewAddFragment2_to_reviewFragment)
                         Toast.makeText(requireContext(),"Sikeres vélemény hozzáadás!", Toast.LENGTH_SHORT).show()
+                        val action = ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(args.currentRestaurant)
+                        findNavController().navigate(action)
                     }
                 }
                 is Resource.Failure -> {
-                    //Log.d("log",it.toString())
                     Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createReview() }
                 }
@@ -61,7 +60,7 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
             val prices = binding.addPricesRating.rating.toDouble()
             val service = binding.addServiceRating.rating.toDouble()
             val cleanness = binding.addCleannessRating.rating.toDouble()
-            val otherAspect = binding.reviewAddOtherText.text.toString()
+            val otherAspect: String = binding.reviewAddOtherText.text.toString()
         }
 
         var savourinessSet: Boolean = false
@@ -80,8 +79,6 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
 
         binding.reviewSaveBtn.setOnClickListener {
             createReview()
-            val action = ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(args.currentRestaurant)
-            findNavController().navigate(action)
         }
     }
 

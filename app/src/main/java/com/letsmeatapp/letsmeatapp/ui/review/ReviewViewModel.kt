@@ -41,7 +41,7 @@ class ReviewViewModel(
         prices: Double,
         service: Double,
         cleanness: Double,
-        other_aspect: String?
+        other_aspect: String
     ) = viewModelScope.launch {
         _reviewCreateResponse.value = repository.createReview(user_id,restaurant_id,savouriness,prices,service,cleanness,other_aspect)
     }

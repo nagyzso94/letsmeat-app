@@ -22,7 +22,7 @@ class ReviewRepository(
         prices: Double,
         service: Double,
         cleanness: Double,
-        other_aspect: String?
+        other_aspect: String
     ) = safeApiCall {
         api.createReview(user_id,restaurant_id,savouriness,prices,service,cleanness, other_aspect)
     }
