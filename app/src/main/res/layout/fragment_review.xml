@@ -31,6 +31,7 @@
         app:srcCompat="@drawable/ic_add_white"
         app:tint="@color/white"
         android:backgroundTint="@color/manhattan"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Még nem érkezett vélemény"
         android:fontFamily="@font/roboto_thin"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:visibility="invisible"
         android:alpha="0.5"

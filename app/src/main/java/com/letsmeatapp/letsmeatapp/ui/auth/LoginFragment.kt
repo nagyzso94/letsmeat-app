@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
-                        viewModel.saveUserData(it.value.user.id!!)
+                        viewModel.saveUserData(it.value.user.id)
                         requireActivity().startNewActivity(RestaurantActivity::class.java)
                     }
                 }

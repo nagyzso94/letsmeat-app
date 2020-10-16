@@ -57,7 +57,7 @@ fun Fragment.handleApiError(
             }
         else -> {
             val error = failure.errorBody?.string().toString()
-            requireView().snackbar(error!!)
+            requireView().snackbar(error)
         }
     }
 }

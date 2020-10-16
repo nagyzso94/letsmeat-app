@@ -17,7 +17,6 @@ class ProfileActivity : AppCompatActivity() {
         bottom_nav_view.selectedItemId = R.id.my_profile
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.my_profile -> true
                 R.id.my_home -> {
                     startActivity(Intent(this, RestaurantActivity::class.java))
                     overridePendingTransition(0, 0);

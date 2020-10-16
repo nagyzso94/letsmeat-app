@@ -52,27 +52,16 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
             }
         })
 
-
-        binding.reviewAddOtherText.addTextChangedListener {
-            val userId = userId!!
-            val restaurantId = args.currentRestaurant.id!!
-            val savouriness = binding.addSavourinessRating.rating.toDouble()
-            val prices = binding.addPricesRating.rating.toDouble()
-            val service = binding.addServiceRating.rating.toDouble()
-            val cleanness = binding.addCleannessRating.rating.toDouble()
-            val otherAspect: String = binding.reviewAddOtherText.text.toString()
-        }
-
         var savourinessSet: Boolean = false
         var pricesSet: Boolean = false
         var serviceSet: Boolean = false
 
-        binding.addSavourinessRating.setOnRatingBarChangeListener { ratingBar, fl, b -> savourinessSet = b }
-        binding.addPricesRating.setOnRatingBarChangeListener { ratingBar, fl, b -> pricesSet = b }
-        binding.addServiceRating.setOnRatingBarChangeListener { ratingBar, fl, b -> serviceSet = b }
-        binding.addCleannessRating.setOnRatingBarChangeListener { ratingBar, numsStars, b ->
+        binding.addSavourinessRating.setOnRatingBarChangeListener { _, _, b -> savourinessSet = b }
+        binding.addPricesRating.setOnRatingBarChangeListener { _, _, b -> pricesSet = b }
+        binding.addServiceRating.setOnRatingBarChangeListener { _, _, b -> serviceSet = b }
+        binding.addCleannessRating.setOnRatingBarChangeListener { _, _, b ->
             val userId = userId!!
-            val restaurantId = args.currentRestaurant.id!!
+            val restaurantId = args.currentRestaurant.id
             //Toast.makeText(requireContext(), "userId: $userId, restaurantId: $restaurantId, cleanness: ${add_cleanness_rating.rating}", Toast.LENGTH_SHORT).show()
             binding.reviewSaveBtn.enable(userId != 0 && restaurantId != 0 && savourinessSet && pricesSet && serviceSet && b)
         }
@@ -84,7 +73,7 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
 
     private fun createReview() {
         val userId = userId!!
-        val restaurantId = args.currentRestaurant.id!!
+        val restaurantId = args.currentRestaurant.id
         val savouriness = binding.addSavourinessRating.rating.toDouble()
         val prices = binding.addPricesRating.rating.toDouble()
         val service = binding.addServiceRating.rating.toDouble()

@@ -54,7 +54,6 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-
         })
 
         binding.floatingActionButton.setOnClickListener {
@@ -64,7 +63,7 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
 
     }
 
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         review_recyclerview.adapter = reviewListRecycleAdapter
         review_recyclerview.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)

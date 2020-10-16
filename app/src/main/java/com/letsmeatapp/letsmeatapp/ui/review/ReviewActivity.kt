@@ -29,7 +29,6 @@ class ReviewActivity : AppCompatActivity() {
         bottom_nav_view.selectedItemId = R.id.my_home
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.my_home -> true
                 R.id.my_profile -> {
                     startActivity(Intent(this, ProfileActivity::class.java))
                     overridePendingTransition(0, 0);

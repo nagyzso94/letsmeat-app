@@ -19,10 +19,8 @@ interface ReviewApi {
         @Field("cleanness") cleanness: Double,
         @Field("other_aspect") other_aspect: String
     ) : ReviewCreationSuccess
-    // TODO ezt meg kell majd mahinálni, hogy rendes válasz jöjjön vissza és nem null errorbody
-    // TODO a response sem oksa, az is todo
 
-    @GET("reviews/{userId}")
+    @GET("reviews/show/user/{userId}")
     suspend fun getReviewsbyUserId(
         @Path("userId") number: Int
     ): Response<List<ReviewResponseItem>>

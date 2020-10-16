@@ -1,27 +1,54 @@
 package com.letsmeatapp.letsmeatapp.ui.review
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.letsmeatapp.letsmeatapp.R
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
 import com.letsmeatapp.letsmeatapp.databinding.FragmentMyReviewsBinding
-import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.visible
+import kotlinx.android.synthetic.main.fragment_review.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
 
 class MyReviewsFragment : BaseFragment<ReviewViewModel, FragmentMyReviewsBinding, ReviewRepository>() {
 
-        override fun onActivityCreated(savedInstanceState: Bundle?) {
+    private val reviewListRecycleAdapter by lazy { MyReviewsListRecycleAdapter() }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
             super.onActivityCreated(savedInstanceState)
 
-            // todo ide jönnek majd az design elemekkel való összekötések, response megfigyelések
-        }
+            setupRecyclerView()
+            viewModel.getReviewsbyUserId(userId!!)
+            viewModel.restaurantReviews.observe(viewLifecycleOwner, Observer {
+                when (it) {
+                    is Resource.Success -> {
+                        if (it.value.body()?.isEmpty()!!) {
+                            binding.textView2.text = "Még nem írtál véleményt :("
+                            binding.emptyReviews.visible(true)
+                            binding.textView2.visible(true)
+                        } else {
+                            reviewListRecycleAdapter.setData(it.value.body()!!)
+                        }
+                    }
+                    is Resource.Failure -> {
+                        Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+    }
+
+    private fun setupRecyclerView() {
+        review_recyclerview.adapter = reviewListRecycleAdapter
+        review_recyclerview.layoutManager =
+            StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+    }
 
         override fun getViewModel() = ReviewViewModel::class.java
 

@@ -13,11 +13,9 @@ class MyReviewsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_reviews)
 
-
         bottom_nav_view.selectedItemId = R.id.my_reviews
         bottom_nav_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.my_reviews -> true
                 R.id.my_home -> {
                     startActivity(Intent(this, RestaurantActivity::class.java))
                     overridePendingTransition(0, 0);

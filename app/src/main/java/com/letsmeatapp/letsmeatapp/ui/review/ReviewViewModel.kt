@@ -26,7 +26,7 @@ class ReviewViewModel(
     }
 
     fun getReviewsbyUserId(userId: Int) = viewModelScope.launch {
-        _restaurantReviews.value = repository.getReviewsbyRestaurantId(userId)
+        _restaurantReviews.value = repository.getReviewsbyUserId(userId)
     }
 
     // Retrieving created review from repository
