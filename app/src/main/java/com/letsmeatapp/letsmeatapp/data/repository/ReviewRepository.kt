@@ -1,7 +1,6 @@
 package com.letsmeatapp.letsmeatapp.data.repository
 
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
-import retrofit2.http.Field
 
 class ReviewRepository(
     private val api : ReviewApi

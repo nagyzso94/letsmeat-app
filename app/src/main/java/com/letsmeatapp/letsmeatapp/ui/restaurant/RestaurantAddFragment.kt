@@ -17,12 +17,15 @@ import com.google.android.material.color.MaterialColors
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
+import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.databinding.RestaurantAddFragmentBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
@@ -45,8 +48,7 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
                     }
                 }
                 is Resource.Failure -> {
-                    //Log.d("log",it.toString())
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createRestaurant() }
                 }
             }
@@ -90,7 +92,6 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         }
     }
 
-
     override fun getViewModel(): Class<RestaurantViewModel> = RestaurantViewModel::class.java
 
     override fun getFragmentBinding(
@@ -98,10 +99,12 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         container: ViewGroup?
     ) = RestaurantAddFragmentBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = RestaurantRepository(
-        remoteDataSource.buildApi(
-            RestaurantApi::class.java
-        )
-    )
+
+    override fun getFragmentRepository() : RestaurantRepository {
+        val token = runBlocking { userPreferences.authToken.first() }
+        val api = remoteDataSource.buildApi(RestaurantApi::class.java, token)
+        return RestaurantRepository(api)
+    }
+
 
 }

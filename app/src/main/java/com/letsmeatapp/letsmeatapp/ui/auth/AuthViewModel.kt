@@ -47,6 +47,5 @@ class AuthViewModel(
         passwordConfirmation: String
     ) = viewModelScope.launch {
         _registerResponse.value = repository.register(name,email,password,passwordConfirmation)
-        Log.d("resp",_registerResponse.value.toString())
     }
 }

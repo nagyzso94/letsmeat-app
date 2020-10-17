@@ -10,6 +10,7 @@ import com.letsmeatapp.letsmeatapp.ui.auth.LoginFragment
 import com.letsmeatapp.letsmeatapp.ui.auth.RegisterFragment
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment
+import com.letsmeatapp.letsmeatapp.ui.review.ReviewAddFragment
 
 fun <A: Activity> Activity.startNewActivity(activity: Class<A>){
     overridePendingTransition(0, 0);
@@ -50,10 +51,18 @@ fun Fragment.handleApiError(
                 requireView().snackbar("Helytelen email és/vagy jelszó!")
             } else if (this is RegisterFragment) {
                 requireView().snackbar("Helytelen név, email és/vagy jelszó!")
-            } else if (this is RestaurantAddFragment){
-                    requireView().snackbar("Helytelen adatok!")
-            } else{
+            } else {
                 (this as BaseFragment<*,*,*>).logout()
+            }
+        failure.errCode == 422 ->
+            if (this is RestaurantAddFragment){
+                requireView().snackbar("Helytelen adatok!")
+            } else if (this is ReviewAddFragment) {
+                requireView().snackbar("Ellenőrizd a megadott adatokat!!")
+            }
+        failure.errCode == 500 ->
+            if (this is ReviewAddFragment) {
+                requireView().snackbar("A szöveges értékelés nem maradhat üres!")
             }
         else -> {
             val error = failure.errorBody?.string().toString()

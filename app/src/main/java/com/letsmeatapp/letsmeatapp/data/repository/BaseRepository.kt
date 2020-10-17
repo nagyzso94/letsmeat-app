@@ -1,12 +1,13 @@
 package com.letsmeatapp.letsmeatapp.data.repository
 
 import com.letsmeatapp.letsmeatapp.data.network.Resource
-import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import java.io.IOError
+import java.net.ConnectException
 
 abstract class BaseRepository {
 
@@ -16,10 +17,10 @@ abstract class BaseRepository {
         return withContext(Dispatchers.IO){
             try {
                 Resource.Success(apiCall.invoke())
-            } catch (throwable: Throwable){
-                when(throwable){
+            } catch (e: Exception){
+                when(e){
                     is HttpException -> {
-                        Resource.Failure(false,throwable.code(),throwable.response()?.errorBody())
+                        Resource.Failure(false,e.code(),e.response()?.errorBody())
                     }
                     else -> {
                         Resource.Failure(true,null,null)

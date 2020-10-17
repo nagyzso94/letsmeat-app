@@ -37,16 +37,23 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
         binding.reviewSaveBtn.enable(false)
 
         viewModel.reviewCreateResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
-                        Toast.makeText(requireContext(),"Sikeres vélemény hozzáadás!", Toast.LENGTH_SHORT).show()
-                        val action = ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(args.currentRestaurant)
+                        Toast.makeText(
+                            requireContext(),
+                            "Sikeres vélemény hozzáadás!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val action =
+                            ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(
+                                args.currentRestaurant
+                            )
                         findNavController().navigate(action)
                     }
                 }
                 is Resource.Failure -> {
-                    Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createReview() }
                 }
             }
