@@ -1,12 +1,11 @@
 package com.letsmeatapp.letsmeatapp.ui.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
 import com.letsmeatapp.letsmeatapp.ui.review.MyReviewsActivity
-import com.letsmeatapp.letsmeatapp.ui.review.ReviewActivity
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {

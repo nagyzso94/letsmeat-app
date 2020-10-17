@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val repository: UserRepository
-): BaseViewModel(repository){
+) : BaseViewModel(repository) {
 
     private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val user: LiveData<Resource<LoginResponse>>

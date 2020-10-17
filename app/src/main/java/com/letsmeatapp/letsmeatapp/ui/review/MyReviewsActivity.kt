@@ -1,8 +1,8 @@
 package com.letsmeatapp.letsmeatapp.ui.review
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.ui.profile.ProfileActivity
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity

@@ -6,8 +6,8 @@ import com.letsmeatapp.letsmeatapp.data.repository.BaseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-abstract class BaseViewModel (
+abstract class BaseViewModel(
     private val repository: BaseRepository
-): ViewModel(){
+) : ViewModel() {
     suspend fun logout(api: UserApi) = withContext(Dispatchers.IO) { repository.logout(api) }
 }

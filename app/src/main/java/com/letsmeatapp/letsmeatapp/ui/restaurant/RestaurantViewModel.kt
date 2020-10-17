@@ -17,16 +17,18 @@ class RestaurantViewModel(
 ) : BaseViewModel(repository) {
 
     // Getting restaurants list from the repository
-    private val _restaurants: MutableLiveData<Resource<Response<List<Restaurant>>>> = MutableLiveData()
+    private val _restaurants: MutableLiveData<Resource<Response<List<Restaurant>>>> =
+        MutableLiveData()
     val restaurants: LiveData<Resource<Response<List<Restaurant>>>>
         get() = _restaurants
 
     fun getRestaurants() = viewModelScope.launch {
         _restaurants.value = repository.getRestaurants()
-    } 
+    }
 
     // Retrieving created restaurant from the repository
-    private val _restaurantCreateResponse: MutableLiveData<Resource<RestaurantCreateResponse>> = MutableLiveData()
+    private val _restaurantCreateResponse: MutableLiveData<Resource<RestaurantCreateResponse>> =
+        MutableLiveData()
     val restaurantCreateResponse: LiveData<Resource<RestaurantCreateResponse>>
         get() = _restaurantCreateResponse
 
@@ -37,6 +39,7 @@ class RestaurantViewModel(
         webUri: String,
         type: Int
     ) = viewModelScope.launch {
-        _restaurantCreateResponse.value = repository.createRestaurant(name,address,phoneNumber,webUri,type)
+        _restaurantCreateResponse.value =
+            repository.createRestaurant(name, address, phoneNumber, webUri, type)
     }
 }

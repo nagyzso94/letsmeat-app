@@ -25,13 +25,13 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
         binding.registerBtn.enable(false)
 
         viewModel.registerResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         requireActivity().startNewActivity(AuthActivity::class.java)
                     }
                 }
-                is Resource.Failure -> handleApiError(it){
+                is Resource.Failure -> handleApiError(it) {
                     register()
                 }
             }
@@ -41,7 +41,10 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
             val name = binding.registerName.text.toString()
             val email = binding.registerEmail.text.toString().trim()
             val password = binding.registerPassword.text.toString().trim()
-            binding.registerBtn.enable(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && it.toString().isNotEmpty())
+            binding.registerBtn.enable(
+                name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && it.toString()
+                    .isNotEmpty()
+            )
         }
 
         binding.registerBtn.setOnClickListener {
@@ -50,12 +53,12 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
 
     }
 
-    private fun register(){
+    private fun register() {
         val name = binding.registerName.text.toString()
         val email = binding.registerEmail.text.toString().trim()
         val password = binding.registerPassword.text.toString().trim()
         val passwordConfirmation = binding.registerPasswordConfirmation.text.toString().trim()
-        viewModel.register(name,email,password,passwordConfirmation)
+        viewModel.register(name, email, password, passwordConfirmation)
     }
 
     override fun getViewModel() = AuthViewModel::class.java
@@ -63,9 +66,10 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentRegisterBinding.inflate(inflater,container,false)
+    ) = FragmentRegisterBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java),userPreferences)
+    override fun getFragmentRepository() =
+        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 
 
 }

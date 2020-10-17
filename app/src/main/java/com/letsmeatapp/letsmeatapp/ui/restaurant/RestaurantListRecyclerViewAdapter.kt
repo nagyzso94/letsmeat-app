@@ -9,7 +9,8 @@ import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import kotlinx.android.synthetic.main.restaurant_item_row.view.*
 
-class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRecyclerViewAdapter.MyViewHolder>(){
+class RestaurantListRecyclerViewAdapter :
+    RecyclerView.Adapter<RestaurantListRecyclerViewAdapter.MyViewHolder>() {
 
     private var restaurantList = emptyList<Restaurant>()
 
@@ -19,7 +20,8 @@ class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRec
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_row, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_row, parent, false)
         return MyViewHolder(view)
     }
 
@@ -28,7 +30,7 @@ class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRec
         position: Int
     ) {
         holder.itemView.row_whose_review.text = restaurantList[position].name
-        when(restaurantList[position].type){
+        when (restaurantList[position].type) {
             0 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.hungarian_food)
             1 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.italian_food)
             2 -> holder.itemView.row_restaurant_type_pic.setImageResource(R.drawable.asian_food)
@@ -37,7 +39,10 @@ class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRec
         }
 
         holder.itemView.row_background.setOnClickListener {
-            val action = RestaurantListFragmentDirections.actionRestaurantListFragmentToRestaurantDetails(restaurantList[position])
+            val action =
+                RestaurantListFragmentDirections.actionRestaurantListFragmentToRestaurantDetails(
+                    restaurantList[position]
+                )
             holder.itemView.findNavController().navigate(action)
         }
     }
@@ -46,7 +51,7 @@ class RestaurantListRecyclerViewAdapter : RecyclerView.Adapter<RestaurantListRec
         return restaurantList.size
     }
 
-    fun setData(newList: List<Restaurant>){
+    fun setData(newList: List<Restaurant>) {
         restaurantList = newList
         notifyDataSetChanged()
     }

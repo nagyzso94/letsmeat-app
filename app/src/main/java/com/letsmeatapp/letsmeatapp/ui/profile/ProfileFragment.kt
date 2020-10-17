@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.UserApi
@@ -17,12 +16,6 @@ import kotlinx.coroutines.runBlocking
 
 
 class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding, UserRepository>() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +32,6 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding, U
         binding.buttonLogout.setOnClickListener {
             logout()
         }
-
     }
 
     private fun updateUI(user: User) {
@@ -61,5 +53,4 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding, U
         val api = remoteDataSource.buildApi(UserApi::class.java, token)
         return UserRepository(api)
     }
-
 }

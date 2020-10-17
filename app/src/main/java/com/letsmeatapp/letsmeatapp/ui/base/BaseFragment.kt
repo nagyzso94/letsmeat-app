@@ -17,11 +17,11 @@ import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository> :  Fragment() {
+abstract class BaseFragment<VM : BaseViewModel, B : ViewBinding, R : BaseRepository> : Fragment() {
 
-    protected lateinit var binding : B
+    protected lateinit var binding: B
     protected val remoteDataSource = RemoteDataSource()
-    protected lateinit var viewModel : VM
+    protected lateinit var viewModel: VM
     protected lateinit var userPreferences: UserPreferences
     protected var userId: Int? = 0
 
@@ -43,17 +43,13 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         return binding.root
     }
 
-    fun logout() = lifecycleScope.launch{
+    fun logout() = lifecycleScope.launch {
         val authToken = userPreferences.authToken.first()
         val api = remoteDataSource.buildApi(UserApi::class.java, authToken)
         viewModel.logout(api)
         userPreferences.clear()
         requireActivity().startNewActivity(AuthActivity::class.java)
     }
-
-  //  fun getUser() = lifecycleScope.launch{
-  //      userId = userPreferences.userId.first()
-  //  }
 
     abstract fun getViewModel(): Class<VM>
 

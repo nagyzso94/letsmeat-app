@@ -46,7 +46,7 @@ class RestaurantListFragment :
 
     }
 
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         restaurant_list_recyclreview.adapter = restaurantListRecyclerViewAdapter
         restaurant_list_recyclreview.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)

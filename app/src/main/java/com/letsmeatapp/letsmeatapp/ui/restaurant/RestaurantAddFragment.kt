@@ -1,23 +1,17 @@
 package com.letsmeatapp.letsmeatapp.ui.restaurant
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.ColorInt
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.color.MaterialColors
 import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
-import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.databinding.RestaurantAddFragmentBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
@@ -28,7 +22,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
-class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
+class RestaurantAddFragment :
+    BaseFragment<RestaurantViewModel, RestaurantAddFragmentBinding, RestaurantRepository>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -48,13 +43,12 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
                     }
                 }
                 is Resource.Failure -> {
-                    //Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createRestaurant() }
                 }
             }
         })
 
-        binding.restaurantAddTitle.addTextChangedListener{
+        binding.restaurantAddTitle.addTextChangedListener {
             checkNameValue(it.toString())
         }
 
@@ -82,12 +76,22 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
         viewModel.createRestaurant(name, address, phoneNumber, webUri, type)
     }
 
-    private fun checkNameValue(name: String) : Boolean {
+    private fun checkNameValue(name: String): Boolean {
         return if (name.isEmpty()) {
-            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(requireContext(),R.drawable.ic_error),null)
+            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                null,
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_error),
+                null
+            )
             true
         } else {
-            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(null,null,AppCompatResources.getDrawable(requireContext(),R.drawable.ic_check),null)
+            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                null,
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_check),
+                null
+            )
             false
         }
     }
@@ -100,11 +104,10 @@ class RestaurantAddFragment : BaseFragment<RestaurantViewModel, RestaurantAddFra
     ) = RestaurantAddFragmentBinding.inflate(inflater, container, false)
 
 
-    override fun getFragmentRepository() : RestaurantRepository {
+    override fun getFragmentRepository(): RestaurantRepository {
         val token = runBlocking { userPreferences.authToken.first() }
         val api = remoteDataSource.buildApi(RestaurantApi::class.java, token)
         return RestaurantRepository(api)
     }
-
 
 }

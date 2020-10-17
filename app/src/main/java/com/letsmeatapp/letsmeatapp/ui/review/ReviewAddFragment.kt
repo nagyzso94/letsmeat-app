@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
@@ -18,8 +16,6 @@ import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewAddBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
-import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragmentArgs
-import kotlinx.android.synthetic.main.review_item_row.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -28,14 +24,11 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
 
     private var currentRestaurant: Restaurant? = null
     private val args: ReviewAddFragmentArgs by navArgs()
-    private val argsrest: RestaurantDetailsFragmentArgs by navArgs()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         currentRestaurant = args.currentRestaurant
-
-        //Toast.makeText(this.context, currentRestaurant!!.id.toString(), Toast.LENGTH_SHORT).show()
         binding.reviewSaveBtn.enable(false)
 
         viewModel.reviewCreateResponse.observe(viewLifecycleOwner, Observer {

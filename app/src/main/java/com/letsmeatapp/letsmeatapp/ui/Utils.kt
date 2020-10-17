@@ -12,7 +12,7 @@ import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantAddFragment
 import com.letsmeatapp.letsmeatapp.ui.review.ReviewAddFragment
 
-fun <A: Activity> Activity.startNewActivity(activity: Class<A>){
+fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
     overridePendingTransition(0, 0);
     Intent(this, activity).also {
         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -21,19 +21,19 @@ fun <A: Activity> Activity.startNewActivity(activity: Class<A>){
 }
 
 
-fun View.visible(isVisible: Boolean){
+fun View.visible(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 
-fun View.enable(enabled: Boolean){
+fun View.enable(enabled: Boolean) {
     isEnabled = enabled
     alpha = if (enabled) 1f else 0.5f
 }
 
-fun View.snackbar(message: String, action: (() -> Unit)? = null){
+fun View.snackbar(message: String, action: (() -> Unit)? = null) {
     val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
     action?.let {
-        snackbar.setAction("Retry"){
+        snackbar.setAction("Retry") {
             it()
         }
     }
@@ -43,22 +43,25 @@ fun View.snackbar(message: String, action: (() -> Unit)? = null){
 fun Fragment.handleApiError(
     failure: Resource.Failure,
     retry: (() -> Unit)? = null
-){
-    when{
-        failure.isNetworkError -> requireView().snackbar("Ellenőrizd az internetkapcsolatot!", retry)
+) {
+    when {
+        failure.isNetworkError -> requireView().snackbar(
+            "Ellenőrizd az internetkapcsolatot!",
+            retry
+        )
         failure.errCode == 401 ->
-            if (this is LoginFragment){
+            if (this is LoginFragment) {
                 requireView().snackbar("Helytelen email és/vagy jelszó!")
-            } else if (this is RegisterFragment) {
-                requireView().snackbar("Helytelen név, email és/vagy jelszó!")
             } else {
-                (this as BaseFragment<*,*,*>).logout()
+                (this as BaseFragment<*, *, *>).logout()
             }
         failure.errCode == 422 ->
-            if (this is RestaurantAddFragment){
+            if (this is RestaurantAddFragment) {
                 requireView().snackbar("Helytelen adatok!")
             } else if (this is ReviewAddFragment) {
                 requireView().snackbar("Ellenőrizd a megadott adatokat!!")
+            } else if (this is RegisterFragment) {
+                requireView().snackbar("Helytelen név, email és/vagy jelszó!")
             }
         failure.errCode == 500 ->
             if (this is ReviewAddFragment) {

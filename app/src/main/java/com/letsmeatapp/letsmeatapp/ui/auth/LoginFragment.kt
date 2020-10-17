@@ -1,20 +1,18 @@
 package com.letsmeatapp.letsmeatapp.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.letsmeatapp.letsmeatapp.R
-import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
-import com.letsmeatapp.letsmeatapp.databinding.FragmentLoginBinding
 import com.letsmeatapp.letsmeatapp.data.network.AuthApi
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
+import com.letsmeatapp.letsmeatapp.databinding.FragmentLoginBinding
+import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
@@ -59,7 +57,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     private fun login() {
         val email = binding.loginEmail.text.toString().trim()
         val password = binding.loginPassword.text.toString().trim()
-        viewModel.login(email,password)
+        viewModel.login(email, password)
     }
 
     override fun getViewModel() = AuthViewModel::class.java
@@ -67,9 +65,10 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentLoginBinding.inflate(inflater,container,false)
+    ) = FragmentLoginBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(AuthApi::class.java),userPreferences)
+    override fun getFragmentRepository() =
+        AuthRepository(remoteDataSource.buildApi(AuthApi::class.java), userPreferences)
 
 
 }

@@ -2,7 +2,6 @@ package com.letsmeatapp.letsmeatapp.ui.review
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -10,14 +9,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.letsmeatapp.letsmeatapp.NestedReviewsNavigationArgs
-import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
-import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragmentDirections
 import com.letsmeatapp.letsmeatapp.ui.visible
 import kotlinx.android.synthetic.main.fragment_review.*
 import kotlinx.coroutines.flow.first
@@ -34,7 +31,6 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
 
         currentRestaurant = args.nestedRestaurant
         val id = args.nestedRestaurant.id
-        // current userId = userId
         //Toast.makeText(this.context, currentRestaurant?.id.toString()+"fragment"+ userId.toString(), Toast.LENGTH_SHORT).show()
 
         setupRecyclerView()
@@ -57,7 +53,8 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
         })
 
         binding.floatingActionButton.setOnClickListener {
-            val action = ReviewFragmentDirections.actionReviewFragmentToReviewAddFragment2(args.nestedRestaurant)
+            val action =
+                ReviewFragmentDirections.actionReviewFragmentToReviewAddFragment2(args.nestedRestaurant)
             findNavController().navigate(action)
         }
 
