@@ -7,7 +7,6 @@ import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
 import com.letsmeatapp.letsmeatapp.data.responses.*
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
-import com.letsmeatapp.letsmeatapp.ui.profile.ProfileViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -17,8 +16,8 @@ class ReviewViewModel(
 ) : BaseViewModel(repository) {
 
     // Get reviews by restaurantId/UserId - they return list of restaurants
-    private val _restaurantReviews: MutableLiveData<Resource<Response<List<ReviewResponseItem>>>> = MutableLiveData()
-    val restaurantReviews: LiveData<Resource<Response<List<ReviewResponseItem>>>>
+    private val _restaurantReviews: MutableLiveData<Resource<Response<List<Review>>>> = MutableLiveData()
+    val restaurantReviews: LiveData<Resource<Response<List<Review>>>>
         get() = _restaurantReviews
 
     fun getReviewsbyRestaurantId(restaurantId: Int) = viewModelScope.launch {
@@ -30,8 +29,8 @@ class ReviewViewModel(
     }
 
     // Retrieving created review from repository
-    private val _reviewCreateResponse: MutableLiveData<Resource<ReviewCreationSuccess>> = MutableLiveData()
-    val reviewCreateResponse: LiveData<Resource<ReviewCreationSuccess>>
+    private val _reviewCreateResponse: MutableLiveData<Resource<ReviewCreateResponse>> = MutableLiveData()
+    val reviewCreateResponse: LiveData<Resource<ReviewCreateResponse>>
         get() = _reviewCreateResponse
 
     fun createReview(

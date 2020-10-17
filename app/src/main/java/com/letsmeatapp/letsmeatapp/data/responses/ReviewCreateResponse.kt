@@ -1,5 +1,7 @@
 package com.letsmeatapp.letsmeatapp.data.responses
 
 data class ReviewCreateResponse(
-    val message: String
+    val code: Int,
+    val message: String,
+    val success: Boolean
 )

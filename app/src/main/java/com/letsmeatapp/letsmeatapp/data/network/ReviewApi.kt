@@ -5,9 +5,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ReviewApi {
-    @GET("reviews")
-    suspend fun getReviews(): Response<List<Review>>
-
     @FormUrlEncoded
     @POST("reviews/create")
     suspend fun createReview(
@@ -18,17 +15,17 @@ interface ReviewApi {
         @Field("service") service: Double,
         @Field("cleanness") cleanness: Double,
         @Field("other_aspect") other_aspect: String
-    ) : ReviewCreationSuccess
+    ) : ReviewCreateResponse
 
     @GET("reviews/show/user/{userId}")
     suspend fun getReviewsbyUserId(
         @Path("userId") number: Int
-    ): Response<List<ReviewResponseItem>>
+    ): Response<List<Review>>
 
     @GET("reviews/show/{restaurantId}")
     suspend fun getReviewsbyRestaurantId(
         @Path("restaurantId") number: Int
-    ): Response<List<ReviewResponseItem>>
+    ): Response<List<Review>>
 
     @GET("reviews/statistics/{restaurantId}")
     suspend fun getStatistics(

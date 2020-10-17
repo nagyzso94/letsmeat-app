@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.letsmeatapp.letsmeatapp.R
-import com.letsmeatapp.letsmeatapp.data.responses.ReviewResponseItem
+import com.letsmeatapp.letsmeatapp.data.responses.Review
 import kotlinx.android.synthetic.main.review_item_row.view.*
 
 class MyReviewsListRecycleAdapter : RecyclerView.Adapter<MyReviewsListRecycleAdapter.MyViewHolder>(){
 
-    private var reviewList = emptyList<ReviewResponseItem>()
+    private var reviewList = emptyList<Review>()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -42,7 +42,7 @@ class MyReviewsListRecycleAdapter : RecyclerView.Adapter<MyReviewsListRecycleAda
         return reviewList.size
     }
 
-    fun setData(newList: List<ReviewResponseItem>){
+    fun setData(newList: List<Review>){
         reviewList = newList
         notifyDataSetChanged()
     }

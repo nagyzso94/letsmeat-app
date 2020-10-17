@@ -1,15 +1,12 @@
 package com.letsmeatapp.letsmeatapp.ui.auth
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.AuthRepository
-import com.letsmeatapp.letsmeatapp.data.responses.GenericResponse
 import com.letsmeatapp.letsmeatapp.data.responses.LoginResponse
 import com.letsmeatapp.letsmeatapp.data.responses.RegisterResponse
-import com.letsmeatapp.letsmeatapp.data.responses.User
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

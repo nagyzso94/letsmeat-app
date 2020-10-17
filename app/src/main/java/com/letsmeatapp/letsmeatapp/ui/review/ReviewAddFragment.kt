@@ -18,6 +18,7 @@ import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewAddBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragmentArgs
 import kotlinx.android.synthetic.main.review_item_row.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -27,6 +28,7 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
 
     private var currentRestaurant: Restaurant? = null
     private val args: ReviewAddFragmentArgs by navArgs()
+    private val argsrest: RestaurantDetailsFragmentArgs by navArgs()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

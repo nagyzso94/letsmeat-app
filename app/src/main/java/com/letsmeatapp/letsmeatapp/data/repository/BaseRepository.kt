@@ -6,8 +6,6 @@ import com.letsmeatapp.letsmeatapp.data.network.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.io.IOError
-import java.net.ConnectException
 
 abstract class BaseRepository {
 

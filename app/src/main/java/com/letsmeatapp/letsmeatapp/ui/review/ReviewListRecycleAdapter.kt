@@ -3,15 +3,14 @@ package com.letsmeatapp.letsmeatapp.ui.review
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.letsmeatapp.letsmeatapp.R
-import com.letsmeatapp.letsmeatapp.data.responses.ReviewResponseItem
+import com.letsmeatapp.letsmeatapp.data.responses.Review
 import kotlinx.android.synthetic.main.review_item_row.view.*
 
 class ReviewListRecycleAdapter : RecyclerView.Adapter<ReviewListRecycleAdapter.MyViewHolder>(){
 
-    private var reviewList = emptyList<ReviewResponseItem>()
+    private var reviewList = emptyList<Review>()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -32,18 +31,18 @@ class ReviewListRecycleAdapter : RecyclerView.Adapter<ReviewListRecycleAdapter.M
         position: Int
     ) {
         holder.itemView.row_whose_review.text = reviewList[position].userName
-        holder.itemView.other_aspect_rating.text = reviewList[position].other_aspect
         holder.itemView.add_savouriness_rating.rating = reviewList[position].savouriness.toFloat()
         holder.itemView.add_prices_rating.rating = reviewList[position].prices.toFloat()
         holder.itemView.add_service_rating.rating = reviewList[position].service.toFloat()
         holder.itemView.add_cleanness_rating.rating = reviewList[position].cleanness.toFloat()
+        holder.itemView.other_aspect_rating.text = reviewList[position].other_aspect
     }
 
     override fun getItemCount(): Int {
         return reviewList.size
     }
 
-    fun setData(newList: List<ReviewResponseItem>){
+    fun setData(newList: List<Review>){
         reviewList = newList
         notifyDataSetChanged()
     }

@@ -22,6 +22,4 @@ interface RestaurantApi {
         @Field("web_page") webUri: String,
         @Field("type") type: Int
     ) : RestaurantCreateResponse
-    // TODO : Ez nem étterem listát fog kapni, kell majd egy fix, mielőtt csinálom azt a csoda hozzáadás screent!
-
 }
