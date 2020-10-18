@@ -27,11 +27,18 @@ class RestaurantListFragment :
 
         setupRecyclerView()
         viewModel.getRestaurants()
+        viewModel.getReviewNumbers()
         viewModel.restaurants.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
                     //Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-                    restaurantListRecyclerViewAdapter.setData(it.value.body()!!)
+                    viewModel.reviewNumbers.observe(viewLifecycleOwner, Observer { response ->
+                        when(response){
+                            is Resource.Success -> {
+                                restaurantListRecyclerViewAdapter.setData(it.value.body()!!, response.value.body()!!)
+                            }
+                        }
+                    })
                 }
                 is Resource.Failure -> {
                     Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()

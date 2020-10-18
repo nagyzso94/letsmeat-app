@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
-import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
 import com.letsmeatapp.letsmeatapp.data.responses.RestaurantDetailResponse
+import com.letsmeatapp.letsmeatapp.data.responses.ReviewNumbers
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -25,6 +25,16 @@ class RestaurantViewModel(
 
     fun getRestaurants() = viewModelScope.launch {
         _restaurants.value = repository.getRestaurants()
+    }
+
+    // Getting review numbers from the repository
+    private val _reviewNumbers: MutableLiveData<Resource<Response<List<ReviewNumbers>>>> =
+        MutableLiveData()
+    val reviewNumbers: LiveData<Resource<Response<List<ReviewNumbers>>>>
+        get() = _reviewNumbers
+
+    fun getReviewNumbers() = viewModelScope.launch {
+        _reviewNumbers.value = repository.getReviewNumbers()
     }
 
     // Retrieving created restaurant from the repository

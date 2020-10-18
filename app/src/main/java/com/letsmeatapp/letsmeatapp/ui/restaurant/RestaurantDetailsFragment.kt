@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.letsmeatapp.letsmeatapp.data.network.Resource
@@ -31,7 +30,6 @@ class RestaurantDetailsFragment :
 
         viewModel.getRestaurantDetailsById(restaurant.id)
         viewModel.restaurantDetails.observe(viewLifecycleOwner, {
-            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
             when (it) {
                 is Resource.Success -> {
                     updateAvgReviewUI(it.value.avg_review)
@@ -58,7 +56,7 @@ class RestaurantDetailsFragment :
     }
 
     private fun updateAvgReviewUI(avgReview: AvgReview) {
-        with(binding){
+        with(binding) {
             binding.savourinessRating.rating = avgReview.savouriness.toFloat()
             binding.pricesRating.rating = avgReview.prices.toFloat()
             binding.serviceRating.rating = avgReview.service.toFloat()

@@ -44,13 +44,14 @@
 
 
             <TextView
-                android:id="@+id/row_other_data"
+                android:id="@+id/row_number_of_reviews_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Vélemények száma: "
+                android:text="Vélemények száma: 0"
+                android:textSize="12sp"
                 android:textColor="@color/dark_gray"
                 android:fontFamily="@font/roboto_light"
                 app:layout_constraintBottom_toBottomOf="parent"
