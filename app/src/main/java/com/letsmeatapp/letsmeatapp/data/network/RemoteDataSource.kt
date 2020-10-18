@@ -11,8 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
     companion object {
-        private const val BASE_URL = "http://192.168.0.10:8000/api/"
-        //private const val BASE_URL = "http://letsmeatapp.com/letsmeatwebapp/public/api/"
+        //locally: private const val BASE_URL = "http://192.168.0.10:8000/api/"
+        private const val BASE_URL = "http://letsmeatapp.com/letsmeatwebapp/public/api/"
     }
 
     val gson: Gson = GsonBuilder()
