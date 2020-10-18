@@ -8,6 +8,7 @@ import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.data.responses.RestaurantCreateResponse
+import com.letsmeatapp.letsmeatapp.data.responses.RestaurantDetailResponse
 import com.letsmeatapp.letsmeatapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -41,5 +42,15 @@ class RestaurantViewModel(
     ) = viewModelScope.launch {
         _restaurantCreateResponse.value =
             repository.createRestaurant(name, address, phoneNumber, webUri, type)
+    }
+
+    // Get restaurant details with avg rating from the repository
+    private val _restaurantDetails: MutableLiveData<Resource<RestaurantDetailResponse>> =
+        MutableLiveData()
+    val restaurantDetails: LiveData<Resource<RestaurantDetailResponse>>
+        get() = _restaurantDetails
+
+    fun getRestaurantDetailsById(id: Int) = viewModelScope.launch {
+        _restaurantDetails.value = repository.getRestaurantDetailsbyId(id)
     }
 }

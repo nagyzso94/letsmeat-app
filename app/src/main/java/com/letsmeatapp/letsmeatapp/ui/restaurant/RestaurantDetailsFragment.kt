@@ -5,10 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
+import com.letsmeatapp.letsmeatapp.data.responses.AvgReview
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.FragmentRestaurantDetailsBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
@@ -26,6 +29,16 @@ class RestaurantDetailsFragment :
 
         val restaurant: Restaurant = args.currentItem
 
+        viewModel.getRestaurantDetailsById(restaurant.id)
+        viewModel.restaurantDetails.observe(viewLifecycleOwner, {
+            Toast.makeText(requireContext(), "${it}", Toast.LENGTH_SHORT).show()
+            when (it) {
+                is Resource.Success -> {
+                    updateAvgReviewUI(it.value.avg_review)
+                }
+            }
+        })
+
         binding.restaurantDetailNameTv.text = restaurant.name
         binding.restaurantDetailRaddressTv.text = restaurant.address
         binding.restaurantDetailRphoneTv.text = restaurant.phone_number
@@ -41,6 +54,15 @@ class RestaurantDetailsFragment :
             val action =
                 RestaurantDetailsFragmentDirections.actionRestaurantDetailsToNavReviews2(restaurant)
             findNavController().navigate(action)
+        }
+    }
+
+    private fun updateAvgReviewUI(avgReview: AvgReview) {
+        with(binding){
+            binding.savourinessRating.rating = avgReview.savouriness.toFloat()
+            binding.pricesRating.rating = avgReview.prices.toFloat()
+            binding.serviceRating.rating = avgReview.service.toFloat()
+            binding.cleannessRating.rating = avgReview.cleanness.toFloat()
         }
     }
 

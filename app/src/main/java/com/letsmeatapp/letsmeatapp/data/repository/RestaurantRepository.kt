@@ -10,6 +10,10 @@ class RestaurantRepository(
         api.getRestaurants()
     }
 
+    suspend fun getRestaurantDetailsbyId(id: Int) = safeApiCall {
+        api.getRestaurantDetailsbyId(id)
+    }
+
     suspend fun createRestaurant(
         name: String,
         address: String,

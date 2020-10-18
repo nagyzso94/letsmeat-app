@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:padding="20dp"
     tools:context=".ui.restaurant.RestaurantDetailsFragment"
     android:id="@+id/restaurant_details_fragment">
 
@@ -12,11 +12,11 @@
         android:id="@+id/restaurant_detail_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_light"
         android:text="Etterem neve"
         android:textAllCaps="true"
         android:textSize="30sp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:id="@+id/restaurant_detail_raddress_tv"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:drawableStart="@drawable/ic_address"
         android:drawablePadding="10dp"
         android:fontFamily="@font/roboto_regular"
@@ -51,34 +51,134 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/restaurant_detail_raddress_tv" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/avg_review_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Átlagos értékelés"
+        android:textColor="@color/manhattan"
+        android:fontFamily="@font/indigo_daisy"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_rphone_tv"
+        />
+
+
+    <TableLayout
+        android:id="@+id/add_review_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avg_review_tv">
+
+        <TableRow android:gravity="center_vertical">
+            <TextView
+                android:fontFamily="@font/roboto_light"
+                android:text="@string/savouriness"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text" />
+
+            <RatingBar
+                android:id="@+id/savouriness_rating"
+                style="@style/CustomRatingBarHeartStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1" />
+        </TableRow>
+
+        <TableRow android:gravity="center_vertical">
+
+            <TextView
+                android:fontFamily="@font/roboto_light"
+                android:text="@string/prices"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text" />
+
+            <RatingBar
+                android:id="@+id/prices_rating"
+                style="@style/CustomRatingBarHeartStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1" />
+        </TableRow>
+
+        <TableRow android:gravity="center_vertical">
+            <TextView
+                android:fontFamily="@font/roboto_light"
+                android:text="@string/service"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text"/>
+
+            <RatingBar
+                android:id="@+id/service_rating"
+                style="@style/CustomRatingBarHeartStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1" />
+        </TableRow>
+
+        <TableRow android:gravity="center_vertical">
+            <TextView
+                android:fontFamily="@font/roboto_light"
+                android:text="@string/cleanness"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text" />
+
+            <RatingBar
+                android:id="@+id/cleanness_rating"
+                style="@style/CustomRatingBarHeartStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1" />
+        </TableRow>
+    </TableLayout>
+
     <Button
         android:id="@+id/restaurant_detail_gotoreviews_btn"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner_btn_manhattan"
         android:padding="10dp"
         android:text="@string/go_to_reviews_btn"
-        android:background="@drawable/rounded_corner_btn"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/restaurant_detail_gotowebsite_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_rphone_tv"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/restaurant_detail_gotowebsite_btn"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner_btn_manhattan"
         android:padding="10dp"
         android:text="@string/go_to_website"
-        android:background="@drawable/rounded_corner_btn_manhattan"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_gotoreviews_btn"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

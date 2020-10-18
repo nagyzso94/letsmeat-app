@@ -32,11 +32,4 @@ abstract class BaseRepository {
         api.logout()
     }
 
-    suspend fun getRestaurantStatistics(api: ReviewApi, restaurant_id: Int) = safeApiCall {
-        api.getReviewsbyRestaurantId(restaurant_id)
-    }
-
-    suspend fun getUser(api: UserApi) = safeApiCall {
-        api.getUser()
-    }
 }
