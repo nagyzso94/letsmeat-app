@@ -53,9 +53,8 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
         })
 
         binding.floatingActionButton.setOnClickListener {
-            val action =
-                ReviewFragmentDirections.actionReviewFragmentToReviewAddFragment2(args.nestedRestaurant)
-            findNavController().navigate(action)
+            val action = ReviewFragmentDirections.actionReviewFragmentToReviewAddFragment(args.nestedRestaurant)
+            this.findNavController().navigate(action)
         }
 
     }

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.letsmeatapp.letsmeatapp.NestedReviewsNavigationDirections
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
@@ -16,6 +17,7 @@ import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewAddBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
+import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragmentDirections
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -35,16 +37,7 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
             when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
-                        Toast.makeText(
-                            requireContext(),
-                            "Sikeres vélemény hozzáadás!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val action =
-                            ReviewAddFragmentDirections.actionReviewAddFragment2ToReviewFragment(
-                                args.currentRestaurant
-                            )
-                        findNavController().navigate(action)
+                        findNavController().popBackStack()
                     }
                 }
                 is Resource.Failure -> {

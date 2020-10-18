@@ -59,12 +59,12 @@
             android:name="nestedRestaurant"
             app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
         <fragment
-            android:id="@+id/reviewAddFragment2"
+            android:id="@+id/reviewAddFragment"
             android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewAddFragment"
             android:label="fragment_review_add"
             tools:layout="@layout/fragment_review_add" >
             <action
-                android:id="@+id/action_reviewAddFragment2_to_reviewFragment"
+                android:id="@+id/action_reviewAddFragment_to_reviewFragment_nested"
                 app:destination="@id/reviewFragment" />
             <argument
                 android:name="currentRestaurant"
@@ -75,12 +75,14 @@
             android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewFragment"
             android:label="ReviewFragment" >
             <action
-                android:id="@+id/action_reviewFragment_to_reviewAddFragment2"
-                app:destination="@id/reviewAddFragment2" />
+                android:id="@+id/action_reviewFragment_to_reviewAddFragment"
+                app:destination="@id/reviewAddFragment" />
             <argument
                 android:name="nestedRestaurant"
                 app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
         </fragment>
-
+        <action
+            android:id="@+id/action_global_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
     </navigation>
 </navigation>

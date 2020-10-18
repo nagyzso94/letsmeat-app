@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_reviews"
-    app:startDestination="@id/reviewFragment2">
+    app:startDestination="@id/reviewFragment">
     <fragment
-        android:id="@+id/reviewAddFragment2"
+        android:id="@+id/reviewAddFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewAddFragment"
         android:label="fragment_review_add"
         tools:layout="@layout/fragment_review_add" >
@@ -13,16 +13,16 @@
             android:name="currentRestaurant"
             app:argType="com.letsmeatapp.letsmeatapp.data.responses.Restaurant" />
         <action
-            android:id="@+id/action_reviewAddFragment2_to_reviewFragment2"
-            app:destination="@id/reviewFragment2" />
+            android:id="@+id/action_reviewAddFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/reviewFragment2"
+        android:id="@+id/reviewFragment"
         android:name="com.letsmeatapp.letsmeatapp.ui.review.ReviewFragment"
         android:label="fragment_review"
         tools:layout="@layout/fragment_review" >
         <action
-            android:id="@+id/action_reviewFragment2_to_reviewAddFragment2"
-            app:destination="@id/reviewAddFragment2" />
+            android:id="@+id/action_reviewFragment_to_reviewAddFragment"
+            app:destination="@id/reviewAddFragment" />
     </fragment>
 </navigation>

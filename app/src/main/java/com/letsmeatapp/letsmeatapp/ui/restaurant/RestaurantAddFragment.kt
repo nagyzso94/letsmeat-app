@@ -1,6 +1,7 @@
 package com.letsmeatapp.letsmeatapp.ui.restaurant
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -20,6 +21,8 @@ import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 
 class RestaurantAddFragment :
@@ -29,7 +32,6 @@ class RestaurantAddFragment :
         super.onActivityCreated(savedInstanceState)
 
         binding.addRestaurantSave.enable(false)
-
         viewModel.restaurantCreateResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
@@ -48,9 +50,17 @@ class RestaurantAddFragment :
             }
         })
 
-        binding.restaurantAddTitle.addTextChangedListener {
-            checkNameValue(it.toString())
+       /* binding.restaurantAddTitle.addTextChangedListener {
+            validateName(it.toString())
         }
+
+        binding.restaurantAddAddress.addTextChangedListener {
+            validateAddress(it.toString())
+        }
+
+        binding.restaurantAddWebUri.addTextChangedListener{
+            validateUri(it.toString())
+        }*/
 
         binding.restaurantAddWebUri.addTextChangedListener {
             val name: String = binding.restaurantAddTitle.text.toString()
@@ -75,26 +85,22 @@ class RestaurantAddFragment :
         val type: Int = binding.typeSpinner.selectedItemPosition
         viewModel.createRestaurant(name, address, phoneNumber, webUri, type)
     }
-
-    private fun checkNameValue(name: String): Boolean {
-        return if (name.isEmpty()) {
-            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                null,
-                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_error),
-                null
-            )
-            true
-        } else {
-            binding.restaurantAddTitle.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                null,
-                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_check),
-                null
-            )
-            false
+    /*
+    private fun validateName(name: String) {
+        if (name.isEmpty() || name.length < 3) {
+            Toast.makeText(requireContext(), "A névnek minimum 3 karakternek lenni kell!", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun validateAddress(address: String) {
+
+    }
+
+    private fun validateUri(uri: String){
+        if(!Patterns.WEB_URL.matcher(uri).matches()){
+            Toast.makeText(requireContext(), "A megadott webcím helytelen!", Toast.LENGTH_SHORT).show()
+        }
+    }*/
 
     override fun getViewModel(): Class<RestaurantViewModel> = RestaurantViewModel::class.java
 
