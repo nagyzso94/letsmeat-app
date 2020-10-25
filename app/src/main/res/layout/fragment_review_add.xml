@@ -16,11 +16,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:alpha="0.9"
             android:fontFamily="@font/roboto_light"
             android:text="@string/how_satisfied"
             android:textAllCaps="true"
             android:textSize="18sp"
-            android:alpha="0.9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,9 +40,9 @@
             android:id="@+id/add_review_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -50,6 +50,7 @@
             <TableRow
                 android:gravity="center_vertical"
                 android:padding="@dimen/table_padding">
+
                 <TextView
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/savouriness"
@@ -93,11 +94,12 @@
             <TableRow
                 android:gravity="center_vertical"
                 android:padding="@dimen/table_padding">
+
                 <TextView
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/service"
                     android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/small_text"/>
+                    android:textSize="@dimen/small_text" />
 
                 <RatingBar
                     android:id="@+id/add_service_rating"
@@ -114,6 +116,7 @@
             <TableRow
                 android:gravity="center_vertical"
                 android:padding="@dimen/table_padding">
+
                 <TextView
                     android:fontFamily="@font/roboto_light"
                     android:text="@string/cleanness"
@@ -166,6 +169,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/review_add_other_text" />
 
+        <ImageView
+            android:id="@+id/info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_info"
+            app:layout_constraintBottom_toTopOf="@+id/add_review_table"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_add_screen_title"
+            app:layout_constraintVertical_bias="0.764" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

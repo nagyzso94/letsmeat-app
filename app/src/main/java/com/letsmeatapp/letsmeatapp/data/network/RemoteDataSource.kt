@@ -19,6 +19,7 @@ class RemoteDataSource {
                         .setLenient()
                         .create();
 
+
     fun <Api> buildApi(
         api: Class<Api>,
         authToken: String? = null

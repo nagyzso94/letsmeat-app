@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import com.letsmeatapp.letsmeatapp.data.UserPreferences
 import com.letsmeatapp.letsmeatapp.ui.auth.AuthActivity
-import com.letsmeatapp.letsmeatapp.ui.profile.ProfileActivity
 import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantActivity
 import com.letsmeatapp.letsmeatapp.ui.startNewActivity
 

@@ -1,14 +1,16 @@
 package com.letsmeatapp.letsmeatapp.ui.review
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.letsmeatapp.letsmeatapp.NestedReviewsNavigationDirections
+import com.letsmeatapp.letsmeatapp.R
 import com.letsmeatapp.letsmeatapp.data.network.Resource
 import com.letsmeatapp.letsmeatapp.data.network.ReviewApi
 import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
@@ -17,7 +19,6 @@ import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewAddBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
 import com.letsmeatapp.letsmeatapp.ui.enable
 import com.letsmeatapp.letsmeatapp.ui.handleApiError
-import com.letsmeatapp.letsmeatapp.ui.restaurant.RestaurantDetailsFragmentDirections
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -41,7 +42,7 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
                     }
                 }
                 is Resource.Failure -> {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
                     handleApiError(it) { createReview() }
                 }
             }
@@ -64,6 +65,11 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
         binding.reviewSaveBtn.setOnClickListener {
             createReview()
         }
+
+        binding.infoButton.setOnClickListener {
+            onAlertDialog(this.requireView())
+        }
+
     }
 
     private fun createReview() {
@@ -88,5 +94,19 @@ class ReviewAddFragment : BaseFragment<ReviewViewModel, FragmentReviewAddBinding
         val token = runBlocking { userPreferences.authToken.first() }
         val api = remoteDataSource.buildApi(ReviewApi::class.java, token)
         return ReviewRepository(api)
+    }
+
+    private fun onAlertDialog(view: View) {
+        val builder = AlertDialog.Builder(view.context)
+
+        builder.setIcon(R.drawable.ic_info)
+        builder.setTitle("Információ")
+        builder.setMessage("Mennyire voltál megelégedve? Egytől ötig értékelj. Az öt azt jelenti nagyon meg voltál elégedve, a nulla pedig hogy egyáltalán nem. Az árak esetében az olcsó számít nullának, a nagyon drága pedig ötösnek.")
+
+        builder.setNeutralButton("OK") {dialog, id->
+
+        }
+
+        builder.show()
     }
 }

@@ -11,6 +11,7 @@ import com.letsmeatapp.letsmeatapp.data.repository.UserRepository
 import com.letsmeatapp.letsmeatapp.data.responses.User
 import com.letsmeatapp.letsmeatapp.databinding.FragmentProfileBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -26,6 +27,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding, U
                 is Resource.Success -> {
                     updateUI(it.value.user)
                 }
+                is Resource.Failure  -> handleApiError(it){ viewModel.getUser() }
             }
         })
 

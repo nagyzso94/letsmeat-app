@@ -26,13 +26,6 @@ class ReviewRepository(
         api.createReview(user_id,restaurant_id,savouriness,prices,service,cleanness, other_aspect)
     }
 
-
-    // todo törlés?
-    /*suspend fun getRestaurantStatistics(
-        restaurant_id: Int
-    ) = safeApiCall {
-        api.getReviewsbyRestaurantId(restaurant_id)
-    }*/
 }
 
 

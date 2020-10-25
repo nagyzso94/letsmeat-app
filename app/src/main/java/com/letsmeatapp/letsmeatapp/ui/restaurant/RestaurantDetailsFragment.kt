@@ -14,6 +14,7 @@ import com.letsmeatapp.letsmeatapp.data.responses.AvgReview
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.FragmentRestaurantDetailsBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -34,6 +35,7 @@ class RestaurantDetailsFragment :
                 is Resource.Success -> {
                     updateAvgReviewUI(it.value.avg_review)
                 }
+                is Resource.Failure -> handleApiError(it) { viewModel.getRestaurantDetailsById(restaurant.id) }
             }
         })
 

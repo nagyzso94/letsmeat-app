@@ -68,7 +68,7 @@ class RestaurantAddFragment :
             val phoneNumber: String = binding.restaurantAddPhoneNumber.text.toString()
             val webUri: String = binding.restaurantAddWebUri.text.toString()
             val type: Int = binding.typeSpinner.selectedItemPosition
-            binding.addRestaurantSave.enable(name.isNotEmpty() && address.isNotEmpty() && phoneNumber.isNotEmpty() && webUri.isNotEmpty() && type != -1)
+            binding.addRestaurantSave.enable(name.length >= 2 && address.length >= 2 && phoneNumber.isNotEmpty() && webUri.isNotEmpty() && type != -1)
         }
 
         binding.addRestaurantSave.setOnClickListener {

@@ -13,6 +13,7 @@ import com.letsmeatapp.letsmeatapp.data.network.RestaurantApi
 import com.letsmeatapp.letsmeatapp.data.repository.RestaurantRepository
 import com.letsmeatapp.letsmeatapp.databinding.FragmentRestaurantListBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import kotlinx.android.synthetic.main.fragment_restaurant_list.*
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -40,9 +41,7 @@ class RestaurantListFragment :
                         }
                     })
                 }
-                is Resource.Failure -> {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiError(it) { viewModel.getRestaurants(); viewModel.getReviewNumbers()  }
             }
 
         })

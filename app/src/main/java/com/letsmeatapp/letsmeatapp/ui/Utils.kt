@@ -66,6 +66,8 @@ fun Fragment.handleApiError(
         failure.errCode == 500 ->
             if (this is ReviewAddFragment) {
                 requireView().snackbar("A szöveges értékelés nem maradhat üres!")
+            } else {
+                requireView().snackbar("Hiba történt a szerver elérése közben!")
             }
         else -> {
             val error = failure.errorBody?.string().toString()

@@ -15,6 +15,7 @@ import com.letsmeatapp.letsmeatapp.data.repository.ReviewRepository
 import com.letsmeatapp.letsmeatapp.data.responses.Restaurant
 import com.letsmeatapp.letsmeatapp.databinding.FragmentReviewBinding
 import com.letsmeatapp.letsmeatapp.ui.base.BaseFragment
+import com.letsmeatapp.letsmeatapp.ui.handleApiError
 import com.letsmeatapp.letsmeatapp.ui.visible
 import kotlinx.android.synthetic.main.fragment_review.*
 import kotlinx.coroutines.flow.first
@@ -46,9 +47,7 @@ class ReviewFragment : BaseFragment<ReviewViewModel, FragmentReviewBinding, Revi
                         reviewListRecycleAdapter.setData(it.value.body()!!)
                     }
                 }
-                is Resource.Failure -> {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiError(it) { viewModel.getReviewsbyRestaurantId(id) }
             }
         })
 
