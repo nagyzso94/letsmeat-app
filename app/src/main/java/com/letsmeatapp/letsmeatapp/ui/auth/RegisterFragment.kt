@@ -42,7 +42,7 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
             val email = binding.registerEmail.text.toString().trim()
             val password = binding.registerPassword.text.toString().trim()
             binding.registerBtn.enable(
-                name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && it.toString()
+                name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && password.length >= 5 && it.toString().length >= 5 && it.toString()
                     .isNotEmpty()
             )
         }
